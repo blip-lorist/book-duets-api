@@ -27,5 +27,6 @@ To reduce the likelihood of boring or repetitive Book Duets, I might want to fal
   - Language nerds
   - Folks like @acmei who just want to see the world burn with Book Duets featuring:
     - Jane Austin + Taylor Swift
+    - Margaret Brown + Rammstein
     - Sandberg + Sisqo
     - Asimov + Bowie
