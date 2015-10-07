@@ -1,7 +1,7 @@
 # Product Plan - Book Duets
 
 ## Problem Statement
-Book Duets is an API and app made for the amusement and curiosity of music and literature fans. Users may create custom mashups of literary works and lyrics, or they may explore suggested author-musician pairings. Through Book Duets, you can create unique mashups and explore trivia about how musicians and authors influence each other.   
+Book Duets is an API and a web app made for the amusement and curiosity of music and literature fans. Users may create custom mashups of literary works and lyrics, or they may explore suggested author-musician pairings. Through Book Duets, you can create unique mashups and explore trivia about how musicians and authors influence each other.   
 
 ## Market Research
 There doesn't seem to be anything out there that smashes book excerpts and lyrics together. Here are some related services and TwitterBots out there that use similar concepts:
