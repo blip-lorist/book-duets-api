@@ -20,4 +20,4 @@ coverage/
 
 .env
 
-/spec/vcr
+/spec/vcr_cassettes
