@@ -1,8 +1,9 @@
 # book-duets-api
 
-- [Capstone requirements](https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/capstone/capstone.md)
-- [Book Duets Mockup](https://github.com/lorainekv/book-duets-api/blob/master/bookduets_mockup.pdf)
 - [Book Duets Product Plan](https://github.com/lorainekv/book-duets-api/blob/master/product_plan.md)
+- [Book Duets Mockup](https://github.com/lorainekv/book-duets-api/blob/master/bookduets_mockup.pdf)
+- [Capstone requirements](https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/capstone/capstone.md)
+
 
 ### Goals & Guidelines
 - Use your product plan to lead the functionality development of their application

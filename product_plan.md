@@ -1,9 +1,11 @@
 # Product Plan - Book Duets
 
-Don't forget to check out the [Book Duets](https://github.com/lorainekv/book-duets-api/blob/master/bookduets_mockup.pdf) mockup and [README](https://github.com/lorainekv/book-duets-api/blob/master/README.md)
+- [Book Duets mockup](https://github.com/lorainekv/book-duets-api/blob/master/bookduets_mockup.pdf)
+- [README](https://github.com/lorainekv/book-duets-api/blob/master/README.md)
+- [Trello Board](https://trello.com/b/KVisYYDj/book-duets-capstone)
 
 ## Problem Statement
-Book Duets is an API and a web app made for the amusement and curiosity of music and literature fans. Through Book Duets, you can create unique mashups of literary works and lyrics and explore trivia about author-musician pairings throughout history. 
+Book Duets is an API and a web app made for the amusement and curiosity of music and literature fans. Through Book Duets, you can create unique mashups of literary works and lyrics and explore trivia about author-musician pairings throughout history.
 
 ## Market Research
 There doesn't seem to be anything out there that smashes book excerpts and lyrics together. Here are some related services and TwitterBots out there that use similar concepts:
@@ -32,3 +34,17 @@ To reduce the likelihood of boring or repetitive Book Duets, I might want to fal
     - Margaret Brown + Rammstein
     - Sandberg + Sisqo
     - Asimov + Bowie
+
+## What I've Accomplished So Far
+  - Book Duets mockup
+  - Markov chain practice
+  - Purchased domain
+  - NLP research
+  - Identified necessary APIs (Musixmatch and WikiQuote)
+  - Data cleaning and dictionary research
+  - Chatted with two devs about data persistence, Markov chains, and performance
+  - First green spec, hitting the lyrics API
+
+
+## Deliverable Goals for Next Week
+  - An API that returns a rough mashup of literary and lyrical content.
