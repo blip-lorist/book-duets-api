@@ -9,11 +9,11 @@ Book Duets is an API and a web app made for the amusement and curiosity of music
 There doesn't seem to be anything out there that smashes book excerpts and lyrics together. Here are some related services and TwitterBots out there that use similar concepts:
 -  [WriterBot](http://writerbot.com/lyrics) (Genre- and sentiment- based song mashups)
 - TwitterBots that use Markov chains
-  - [Erowid Recruiter](https://twitter.com/erowidrecruiter)
-  - [King James Programming](https://twitter.com/kjv_programming)
-  - [Kim Kierkegaardashian](https://twitter.com/KimKierkegaard)
-  - [Kantye West](https://twitter.com/KantyeW)
-  - [Nihilist Arbys](https://twitter.com/nihilist_arbys)
+  - [Erowid Recruiter](https://twitter.com/erowidrecruiter) - Erowid + Job Postings
+  - [King James Programming](https://twitter.com/kjv_programming) - King James Bible + Structure and Interpretation of Computer Programs
+  - [Kim Kierkegaardashian](https://twitter.com/KimKierkegaard) - Kim Kardashian + Søren Kierkegaard
+  - [Kantye West](https://twitter.com/KantyeW) - Immanuel Kant + Kanye West
+  - [Nihilist Arbys](https://twitter.com/nihilist_arbys) - A serving of nihilism + fast food
 
 
 **How Book Duets is different:** Users can select the texts they mashup. This app also focuses specifically on author-musician connections.
@@ -27,7 +27,7 @@ To reduce the likelihood of boring or repetitive Book Duets, I might want to fal
   - Book nerds
   - Music nerds
   - Language nerds
-  - Folks like @acmei who just want to see the world burn with Book Duets featuring:
+  - Folks like [@acmei](https://github.com/acmei) who just want to see the world burn with Book Duets featuring:
     - Jane Austin + Taylor Swift
     - Margaret Brown + Rammstein
     - Sandberg + Sisqo
