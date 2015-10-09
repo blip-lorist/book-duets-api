@@ -33,6 +33,7 @@ RSpec.describe LyricsController, type: :controller do
       corpus = File.open("lyrical_corpus.txt")
 
       expect(corpus.read).to_not include("******* This Lyrics is NOT for Commercial use *******")
+      expect(corpus.read).to_not include("...")
       corpus.close
     end
   end
