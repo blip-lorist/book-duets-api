@@ -31,7 +31,9 @@ private
 
     track_ids.each do |id|
       response = HTTParty.get(BASE_URI + "track.lyrics.get?track_id=#{id}&apikey=#{ENV['MUSIX_MATCH']}")
-      lyrical_corpus << response
+      json_response = JSON.parse(response)
+      lyrics = json_response["message"]["body"]["lyrics"]["lyrics_body"]
+      lyrical_corpus << lyrics
     end
 
     lyrical_corpus.close
