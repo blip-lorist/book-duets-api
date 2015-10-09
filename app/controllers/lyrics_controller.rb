@@ -3,6 +3,9 @@ class LyricsController < ApplicationController
   BASE_URI = "http://api.musixmatch.com/ws/1.1/"
 
 
+#  http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=15953433&apikey=b16e26c3037afc7bec268fa51386a23a
+
+
 private
 
   def collect_tracks
@@ -20,13 +23,18 @@ private
   return track_ids
   end
 
-  def build_lyrical_corpus
-    track_ids = collect_tracks
-    track_ids.each do |id|
-      response = HTTParty.get()
+  def get_lyrics
 
+    lyrical_corpus = open("lyrical_corpus.txt", "a")
+
+    track_ids = collect_tracks
+
+    track_ids.each do |id|
+      response = HTTParty.get(BASE_URI + "track.lyrics.get?track_id=#{id}&apikey=#{ENV['MUSIX_MATCH']}")
+      lyrical_corpus << response
     end
 
-  end
+    lyrical_corpus.close
 
+  end
 end
