@@ -6,7 +6,7 @@ class LyricsController < ApplicationController
 private
 
   def collect_tracks
-  # @artist_name = params[:artist]
+  # artist_name = params[:artist]
   response = HTTParty.get(BASE_URI + "track.search?q_artist=nickelback&f_has_lyrics=1&page_size=5&format=json&apikey=#{ENV['MUSIX_MATCH']}")
   json_response = JSON.parse(response)
   tracks = json_response["message"]["body"]["track_list"]
@@ -18,6 +18,15 @@ private
   end
 
   return track_ids
+  end
+
+  def build_lyrical_corpus
+    track_ids = collect_tracks
+    track_ids.each do |id|
+      response = HTTParty.get()
+
+    end
+
   end
 
 end
