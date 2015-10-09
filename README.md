@@ -1,6 +1,8 @@
 # book-duets-api
 
-[Capstone requirements](https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/capstone/capstone.md)
+- [Capstone requirements](https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/capstone/capstone.md)
+- [Book Duets Mockup](https://github.com/lorainekv/book-duets-api/blob/master/bookduets_mockup.pdf)
+- [Book Duets Product Plan](https://github.com/lorainekv/book-duets-api/blob/master/product_plan.md)
 
 ### Goals & Guidelines
 - Use your product plan to lead the functionality development of their application
@@ -23,11 +25,11 @@
 ### Integration Choices
 - Choose at least two complex integrations, examples:
   - Background/Async Jobs (sending emails, confirming registrations)
-  - NoSql (MongoDB) **i might need to do this because of treat**
+  - NoSql (MongoDB) **Redis**
   - Content Delivery Network (CDN)
   - Payment Processing (Stripe)
   - Front-end Framework (Ember, Angular, Backbone, etc.)
-  - Third-party OAuth (logging in w/ Twitter, Github, etc.) **this  one**
+  - Third-party OAuth (logging in w/ Twitter, Github, etc.) **this one**
 
 ### Advanced Feature Choices
 - Choose at least two advanced features, examples:
