@@ -1,17 +1,19 @@
 # Product Plan - Book Duets
 
+Don't forget to check out the [Book Duets](https://github.com/lorainekv/book-duets-api/blob/master/bookduets_mockup.pdf) mockup and [README](https://github.com/lorainekv/book-duets-api/blob/master/README.md)
+
 ## Problem Statement
 Book Duets is an API and a web app made for the amusement and curiosity of music and literature fans. Users may create custom mashups of literary works and lyrics, or they may explore suggested author-musician pairings. Through Book Duets, you can create unique mashups and explore trivia about how musicians and authors influence each other.   
 
 ## Market Research
 There doesn't seem to be anything out there that smashes book excerpts and lyrics together. Here are some related services and TwitterBots out there that use similar concepts:
--  http://writerbot.com/lyrics (Genre- and sentiment- based song mashups)
+-  [WriterBot](http://writerbot.com/lyrics) (Genre- and sentiment- based song mashups)
 - TwitterBots that use Markov chains
-  - https://twitter.com/erowidrecruiter
-  - https://twitter.com/kjv_programming
-  - https://twitter.com/KimKierkegaard
-  - https://twitter.com/KantyeW
-  - https://twitter.com/nihilist_arbys
+  - [Erowid Recruiter](https://twitter.com/erowidrecruiter)
+  - [King James Programming](https://twitter.com/kjv_programming)
+  - [Kim Kierkegaardashian](https://twitter.com/KimKierkegaard)
+  - [Kantye West](https://twitter.com/KantyeW)
+  - [Nihilist Arbys](https://twitter.com/nihilist_arbys)
 
 
 **How Book Duets is different:** Users can select the texts they mashup. This app also focuses specifically on author-musician connections.
