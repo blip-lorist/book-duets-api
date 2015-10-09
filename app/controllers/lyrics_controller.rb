@@ -24,7 +24,6 @@ private
   end
 
   def get_lyrics
-
     lyrical_corpus = open("lyrical_corpus.txt", "a")
 
     track_ids = collect_tracks
@@ -35,8 +34,8 @@ private
       lyrics = json_response["message"]["body"]["lyrics"]["lyrics_body"]
       lyrical_corpus << lyrics
     end
-
     lyrical_corpus.close
-
   end
+
+
 end
