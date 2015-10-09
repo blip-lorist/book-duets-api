@@ -3,12 +3,12 @@ require 'vcr_setup'
 
 RSpec.describe LyricsController, type: :controller do
 
-  describe "GET #find_artist" do
-
-    it "retrieves Bjork's artist_id" do
+  describe "collect_tracks" do
+    it "retrieves tracks by Nickelback" do
       VCR.use_cassette 'controller/artist_collection' do
-        get :find_artist, params: {}
-        expect(response.response_code).to eq(200)
+        tracks = (controller.send(:collect_tracks))
+        expect(tracks).to be_an_instance_of Array
+        expect(tracks.length).to be(5)
       end
     end
   end
