@@ -3,7 +3,7 @@
 Don't forget to check out the [Book Duets](https://github.com/lorainekv/book-duets-api/blob/master/bookduets_mockup.pdf) mockup and [README](https://github.com/lorainekv/book-duets-api/blob/master/README.md)
 
 ## Problem Statement
-Book Duets is an API and a web app made for the amusement and curiosity of music and literature fans. Users may create custom mashups of literary works and lyrics, or they may explore suggested author-musician pairings. Through Book Duets, you can create unique mashups and explore trivia about how musicians and authors influence each other.   
+Book Duets is an API and a web app made for the amusement and curiosity of music and literature fans. Through Book Duets, you can create unique mashups of literary works and lyrics and explore trivia about author-musician pairings throughout history. 
 
 ## Market Research
 There doesn't seem to be anything out there that smashes book excerpts and lyrics together. Here are some related services and TwitterBots out there that use similar concepts:
