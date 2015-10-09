@@ -20,9 +20,9 @@ RSpec.describe LyricsController, type: :controller do
         lyrics = (controller.send(:get_lyrics))
 
         expect(File).to exist("lyrical_corpus.txt")
+        expect(File.zero?("lyrical_corpus.txt")).to be(false)
         # Ensures that the file isn't empty. Difficult to test actual
         # content since it's randomly selected
-        expect(File.zero?("lyrical_corpus.txt")).to be(false)
       end
     end
   end
