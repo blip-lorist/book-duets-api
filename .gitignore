@@ -23,3 +23,4 @@ coverage/
 /spec/vcr_cassettes
 
 lyrical_corpus.txt
+lyrical_corpus.bak
