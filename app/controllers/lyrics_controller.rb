@@ -9,18 +9,18 @@ class LyricsController < ApplicationController
 private
 
   def collect_tracks
-  # artist_name = params[:artist]
-  response = HTTParty.get(BASE_URI + "track.search?q_artist=nickelback&f_has_lyrics=1&page_size=5&format=json&apikey=#{ENV['MUSIX_MATCH']}")
-  json_response = JSON.parse(response)
-  tracks = json_response["message"]["body"]["track_list"]
+    # artist_name = params[:artist]
+    response = HTTParty.get(BASE_URI + "track.search?q_artist=nickelback&f_has_lyrics=1&page_size=5&format=json&apikey=#{ENV['MUSIX_MATCH']}")
+    json_response = JSON.parse(response)
+    tracks = json_response["message"]["body"]["track_list"]
 
-  track_ids = []
+    track_ids = []
+    # TODO: Think about making this random, rather than grabbing the first 5
+    tracks.each do |track|
+      track_ids << track["track"]["track_id"]
+    end
 
-  tracks.each do |track|
-    track_ids << track["track"]["track_id"]
-  end
-
-  return track_ids
+    return track_ids
   end
 
   def get_lyrics
@@ -49,7 +49,7 @@ private
     lyrics.gsub!("******* This Lyrics is NOT for Commercial use *******", "")
     lyrics.gsub!("...", "")
     clean_corpus.write(lyrics)
-
+    # TODO: Obscenity filter? Or should this happen at the very end of the mashup?
     original_corpus.close
     clean_corpus.close
 
@@ -58,6 +58,4 @@ private
     # The clean lyrical corpus becomes the main corpus file
     File.rename("lyrical_corpus_temp.txt", "lyrical_corpus.txt")
   end
-
-
 end
