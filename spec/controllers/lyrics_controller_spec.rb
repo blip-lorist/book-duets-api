@@ -29,11 +29,12 @@ RSpec.describe LyricsController, type: :controller do
 
   describe "clean_lyrics" do
     it "removes non-lyrical content from the corpus" do
-      # controller.send(:clean_lyrics)
+      controller.send(:clean_lyrics)
       corpus = File.open("lyrical_corpus.txt")
 
       expect(corpus.read).to_not include("******* This Lyrics is NOT for Commercial use *******")
       expect(corpus.read).to_not include("...")
+
       corpus.close
     end
   end
