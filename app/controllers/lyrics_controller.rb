@@ -25,6 +25,8 @@ private
 
   def get_lyrics
     lyrical_corpus = open("lyrical_corpus.txt", "a")
+    #Remove old lyrics
+    lyrical_corpus.truncate(0)
 
     track_ids = collect_tracks
 
