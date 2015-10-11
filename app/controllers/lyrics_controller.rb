@@ -37,5 +37,25 @@ private
     lyrical_corpus.close
   end
 
+  def clean_lyrics
+
+    original_corpus = open("lyrical_corpus.txt", "r")
+    clean_corpus = open("lyrical_corpus_temp.txt", "a")
+    lyrics = original_corpus.read
+
+    # Cleaning the lyrics
+    lyrics.gsub!("******* This Lyrics is NOT for Commercial use *******", "")
+    lyrics.gsub!("...", "")
+    clean_corpus.write(lyrics)
+
+    original_corpus.close
+    clean_corpus.close
+
+    # The original lyrical corpus is now a backup file
+    File.rename("lyrical_corpus.txt", "lyrical_corpus.bak")
+    # The clean lyrical corpus becomes the main corpus file
+    File.rename("lyrical_corpus_temp.txt", "lyrical_corpus.txt")
+  end
+
 
 end
