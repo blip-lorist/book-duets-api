@@ -21,3 +21,6 @@ coverage/
 .env
 
 /spec/vcr_cassettes
+
+lyrical_corpus.bak
+lyrical_corpus.txt
