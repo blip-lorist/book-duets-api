@@ -1,8 +1,8 @@
 class BookDuetsController < ApplicationController
 
   def custom_duet
-    duos = request.parameters
-    render json: {duo_info: duos}, status: :ok
+    duo = request.parameters
+    render json: {author: duo["author"], musician: duo["musician"]}, status: :ok
   end
 
 end
