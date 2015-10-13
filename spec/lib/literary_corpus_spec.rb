@@ -11,7 +11,7 @@ context "building a literary corpus" do
   describe "collect_random_sections" do
     it "collects quote sections (1.x) and their index numbers from wikiquote" do
       VCR.use_cassette "lib/lit_sections" do
-        random_sections = @corpus.send(:collect_random_sections)
+        random_sections = @corpus.send(:collect_random_sections, "Neil Gaiman")
 
         expect(random_sections).to be_an_instance_of(Array)
         expect(random_sections.length).to eq(4)
@@ -22,7 +22,7 @@ context "building a literary corpus" do
   describe "get_lit" do
     it "collects literary quotes in a txt file" do
       VCR.use_cassette "lib/get_lit", :record => :new_episodes do
-        @corpus.send(:get_lit)
+        @corpus.send(:get_lit, "Neil Gaiman")
 
         expect(File).to exist("literary_corpus.txt")
         expect(File.zero?("literary_corpus.txt")).to be(false)
