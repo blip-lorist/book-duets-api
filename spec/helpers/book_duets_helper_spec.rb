@@ -41,9 +41,9 @@ RSpec.describe BookDuetsHelper, type: :helper do
       it "removes non-lyrical content from the corpus" do
         helper.send(:clean_lyrics)
         corpus = File.open("lyrical_corpus.txt")
-
-        expect(corpus.read).to_not include("******* This Lyrics is NOT for Commercial use *******")
-        expect(corpus.read).to_not include("...")
+        lyrics = corpus.read
+        expect(lyrics).to_not include("******* This Lyrics is NOT for Commercial use *******")
+        expect(lyrics).to_not include("...")
 
         corpus.close
       end
@@ -57,7 +57,7 @@ RSpec.describe BookDuetsHelper, type: :helper do
           random_sections = helper.send(:collect_random_sections)
 
           expect(random_sections).to be_an_instance_of(Array)
-          expect(random_sections.length).to eq(5)
+          expect(random_sections.length).to eq(4)
         end
       end
     end
@@ -76,13 +76,11 @@ RSpec.describe BookDuetsHelper, type: :helper do
     describe "clean_lit" do
       it "removes unrelated content from the corpus" do
         helper.send(:clean_lit)
-        # corpus = File.open("literary_corpus.txt")
-        #
-        # expect(corpus.read).to_not include('\\n')
-        # expect(corpus.read).to_not include("<")
-        # expect(corpus.read).to_not include("  ")
-        #
-        # corpus.close
+        corpus = File.open("literary_corpus.txt")
+        lit_quotes = corpus.read
+        expect(lit_quotes).to_not include("<li>")
+
+        corpus.close
       end
     end
   end
