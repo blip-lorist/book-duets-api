@@ -91,7 +91,7 @@ module BookDuetsHelper
       end
     end
 
-    random_sections = quote_indices.shuffle!.take(5)
+    random_sections = quote_indices.shuffle!.take(4)
 
     return random_sections
   end
@@ -117,7 +117,7 @@ module BookDuetsHelper
     clean_corpus = open("literary_corpus_temp.txt", "a")
     quotes = original_corpus.read
     # Cleaning the literary quotes
-    clean_quotes = Sanitize.fragment(quotes)
+    clean_quotes = Sanitize.fragment(quotes, :remove_contents => ['h3', 'dd','a', 'i'])
     clean_quotes.delete!("\n")
     clean_quotes.squeeze!(" ")
     clean_corpus.write(clean_quotes)
