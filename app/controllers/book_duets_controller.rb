@@ -17,9 +17,11 @@ class BookDuetsController < ApplicationController
     #Stop, mashup time!
     book_duet = new_duet
     render json: {author: duo["author"], musician: duo["musician"], mashup: book_duet}, status: :ok
+    # TODO: Error handling!
   end
 
 
+  
   private
 
   def new_duet
