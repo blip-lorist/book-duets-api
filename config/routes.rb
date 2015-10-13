@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
+  #/custom_duet?musician=Nickelback&author=Neil_Gaiman
   get "/custom_duet" => "book_duets#custom_duet", as: "custom_duet"
 
   get "/suggested_pairing" => "book_duets#suggested_pairing", as: "suggested_pairing"
