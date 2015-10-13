@@ -30,7 +30,6 @@ module BookDuetsHelper
     tracks = json_response["message"]["body"]["track_list"]
 
     track_ids = []
-    # TODO: Think about making this random, rather than grabbing the first 5
     tracks.each do |track|
       track_ids << track["track"]["track_id"]
     end
