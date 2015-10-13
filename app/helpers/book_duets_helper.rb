@@ -77,22 +77,39 @@ module BookDuetsHelper
   # ____ LIT METHODS ____ #
 
   # Collect Wikiquote sections
-  def collect_sections
+  def collect_random_sections
 
-  response = HTTParty.get("https://en.wikiquote.org/w/api.php?action=parse&format=json&prop=sections&page=Neil_Gaiman")
-  
+    response = HTTParty.get("https://en.wikiquote.org/w/api.php?action=parse&format=json&prop=sections&page=Neil_Gaiman")
+
+    sections = response["parse"]["sections"]
+
+    quote_indices = []
+
+    sections.each do |section|
+      if section["number"].to_f < 2
+        quote_indices << section["index"]
+      end
+    end
+
+    random_sections = quote_indices.shuffle!.take(5)
+
+    return random_sections
   end
 
   def get_lit
     literary_corpus = open("literary_corpus.txt", "a")
     literary_corpus.truncate(0)
 
-    response = HTTParty.get(LIT_BASE_URI + "action=parse&format=json&prop=wikitext&page=Chuck_Palahniuk")
-    # json_response = JSON.parse(response)
-    lit = response["parse"]["wikitext"]
-    literary_corpus << lit
+    sections = collect_random_sections
+
+    sections.each do |section|
+      response = HTTParty.get(LIT_BASE_URI + "action=parse&format=json&page=Neil_Gaiman&prop=text&section=#{section}&disableeditsection=")
+      lit = response["parse"]["text"]["*"]
+      literary_corpus << lit
+    end
 
     literary_corpus.close
+
   end
 
   def clean_lit

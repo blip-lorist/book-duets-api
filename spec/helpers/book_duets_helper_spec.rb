@@ -18,7 +18,7 @@ RSpec.describe BookDuetsHelper, type: :helper do
         VCR.use_cassette 'helper/artist_collection' do
           tracks = (helper.send(:collect_tracks))
 
-          expect(tracks).to be_an_instance_of Array
+          expect(tracks).to be_an_instance_of(Array)
           expect(tracks.length).to be(5)
         end
       end
@@ -51,24 +51,27 @@ RSpec.describe BookDuetsHelper, type: :helper do
   end
 
   context "building a literary corpus" do
-    describe "collect_sections" do
+    describe "collect_random_sections" do
       it "collects quote sections (1.x) and their index numbers from wikiquote" do
         VCR.use_cassette "helper/lit_sections" do
-          helper.send(:collect_sections)
+          random_sections = helper.send(:collect_random_sections)
+
+          expect(random_sections).to be_an_instance_of(Array)
+          expect(random_sections.length).to eq(5)
         end
       end
     end
 
-    # describe "get_lit" do
-    #   it "collects literary quotes in a txt file" do
-    #     VCR.use_cassette "helper/get_lit" do
-    #       helper.send(:get_lit)
-    #
-    #       expect(File).to exist("literary_corpus.txt")
-    #       expect(File.zero?("literary_corpus.txt")).to be(false)
-    #     end
-    #   end
-    # end
+    describe "get_lit" do
+      it "collects literary quotes in a txt file" do
+        VCR.use_cassette "helper/get_lit" do
+          helper.send(:get_lit)
+
+          expect(File).to exist("literary_corpus.txt")
+          expect(File.zero?("literary_corpus.txt")).to be(false)
+        end
+      end
+    end
 
     # describe "clean_lit" do
     #   it "removes unrelated content from the corpus" do
