@@ -113,6 +113,19 @@ module BookDuetsHelper
   end
 
   def clean_lit
+    original_corpus = open("literary_corpus.txt", "r")
+    clean_corpus = open("literary_corpus_temp.txt", "a")
+    quotes = original_corpus.read
+    # Cleaning the literary quotes
+    clean_quotes = Sanitize.fragment(quotes)
+    clean_quotes.delete!("\n")
+    clean_quotes.squeeze!(" ")
+    clean_corpus.write(clean_quotes)
 
+    original_corpus.close
+    clean_corpus.close
+
+    File.rename("literary_corpus.txt", "literary_corpus.bak")
+    File.rename("literary_corpus_temp.txt", "literary_corpus.txt")
   end
 end

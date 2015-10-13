@@ -73,17 +73,17 @@ RSpec.describe BookDuetsHelper, type: :helper do
       end
     end
 
-    # describe "clean_lit" do
-    #   it "removes unrelated content from the corpus" do
-    #     helper.send(:clean_lit)
-    #     corpus = File.open("literary_corpus.txt")
-    #
-    #     expect(corpus.read).to_not include('\\n')
-    #     expect(corpus.read).to_not include("<")
-    #     expect(corpus.read).to_not include("  ")
-    #
-    #     corpus.close
-    #   end
-    # end
+    describe "clean_lit" do
+      it "removes unrelated content from the corpus" do
+        helper.send(:clean_lit)
+        # corpus = File.open("literary_corpus.txt")
+        #
+        # expect(corpus.read).to_not include('\\n')
+        # expect(corpus.read).to_not include("<")
+        # expect(corpus.read).to_not include("  ")
+        #
+        # corpus.close
+      end
+    end
   end
 end
