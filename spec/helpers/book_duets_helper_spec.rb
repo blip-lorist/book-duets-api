@@ -14,9 +14,9 @@ RSpec.describe BookDuetsHelper, type: :helper do
 
   context "building a lyrical corpus" do
     describe "collect_tracks" do
-      it "retrieves five track_ids for Nickelback" do
-        VCR.use_cassette 'helper/artist_collection' do
-          tracks = (helper.send(:collect_tracks))
+      it "retrieves five random tracks for Nickelback" do
+        VCR.use_cassette 'helper/random_track_collection' do
+          tracks = (helper.send(:collect_random_tracks))
 
           expect(tracks).to be_an_instance_of(Array)
           expect(tracks.length).to be(5)
@@ -26,7 +26,7 @@ RSpec.describe BookDuetsHelper, type: :helper do
 
     describe "get_lyrics" do
       it "collects lyrics in a txt file" do
-        VCR.use_cassette 'helper/get_lyrics' do
+        VCR.use_cassette 'helper/get_lyrics', :record => :new_episodes do
           helper.send(:get_lyrics)
 
           expect(File).to exist("lyrical_corpus.txt")
@@ -64,7 +64,7 @@ RSpec.describe BookDuetsHelper, type: :helper do
 
     describe "get_lit" do
       it "collects literary quotes in a txt file" do
-        VCR.use_cassette "helper/get_lit" do
+        VCR.use_cassette "helper/get_lit", :record => :new_episodes do
           helper.send(:get_lit)
 
           expect(File).to exist("literary_corpus.txt")
