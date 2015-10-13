@@ -5,13 +5,13 @@ class BookDuetsController < ApplicationController
 
 
   def custom_duet
-    duo = request.parameters
+    duo = request.parameters["duo"]
 
     musician = duo["musician"]
     author = duo["author"]
 
-    LyricalCorpus.new.build_lyrical_corpus(musician)
-    LiteraryCorpus.new.build_literary_corpus(author)
+    LyricalCorpus.new.build_lyrical_corpus (musician)
+    LiteraryCorpus.new.build_literary_corpus (author)
 
     render json: {author: duo["author"], musician: duo["musician"]}, status: :ok
   end
