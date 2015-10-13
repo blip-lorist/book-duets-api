@@ -10,7 +10,7 @@ module BookDuetsHelper
   LIT_BASE_URI = "https://en.wikiquote.org/w/api.php?"
 
   def build_lyrical_corpus (musician)
-    collect_tracks
+    collect_random_tracks
     get_lyrics
     clean_lyrics
   end
@@ -23,9 +23,9 @@ module BookDuetsHelper
   private
 
   # ____ LYRIC METHODS ____ #
-  def collect_tracks
+  def collect_random_tracks
     # artist_name = params[:artist]
-    response = HTTParty.get(LYRICS_BASE_URI + "track.search?q_artist=nickelback&f_has_lyrics=1&page_size=5&format=json&apikey=#{ENV['MUSIX_MATCH']}")
+    response = HTTParty.get(LYRICS_BASE_URI + "track.search?q_artist=nickelback&f_has_lyrics=1&page_size=20&format=json&apikey=#{ENV['MUSIX_MATCH']}")
     json_response = JSON.parse(response)
     tracks = json_response["message"]["body"]["track_list"]
 
@@ -35,7 +35,9 @@ module BookDuetsHelper
       track_ids << track["track"]["track_id"]
     end
 
-    return track_ids
+    random_tracks = track_ids.shuffle!.take(5)
+
+    return random_tracks
   end
 
   def get_lyrics
@@ -43,7 +45,7 @@ module BookDuetsHelper
     #Remove old lyrics
     lyrical_corpus.truncate(0)
 
-    track_ids = collect_tracks
+    track_ids = collect_random_tracks
 
     track_ids.each do |id|
       response = HTTParty.get(LYRICS_BASE_URI + "track.lyrics.get?track_id=#{id}&apikey=#{ENV['MUSIX_MATCH']}")
