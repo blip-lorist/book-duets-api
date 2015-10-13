@@ -1,7 +1,13 @@
 module BookDuetsHelper
 
-  LYRICS_BASE_URI = "http://api.musixmatch.com/ws/1.1/"
+# URI for sections
+# https://en.wikiquote.org/w/api.php?action=parse&format=json&prop=sections&page=Neil_Gaiman
+# https://en.wikiquote.org/w/api.php?action=parse&format=json&page=Neil_Gaiman&prop=text&section=2&disableeditsection=
+# API sandbox link
+# https://en.wikipedia.org/wiki/Special:ApiSandbox
 
+  LYRICS_BASE_URI = "http://api.musixmatch.com/ws/1.1/"
+  LIT_BASE_URI = "https://en.wikiquote.org/w/api.php?"
 
   def build_lyrical_corpus (musician)
     collect_tracks
@@ -9,9 +15,14 @@ module BookDuetsHelper
     clean_lyrics
   end
 
+  def build_literary_corpus (author)
+    get_lit
+    clean_lit
+  end
 
   private
 
+  # ____ LYRIC METHODS ____ #
   def collect_tracks
     # artist_name = params[:artist]
     response = HTTParty.get(LYRICS_BASE_URI + "track.search?q_artist=nickelback&f_has_lyrics=1&page_size=5&format=json&apikey=#{ENV['MUSIX_MATCH']}")
@@ -61,5 +72,30 @@ module BookDuetsHelper
     File.rename("lyrical_corpus.txt", "lyrical_corpus.bak")
     # The clean lyrical corpus becomes the main corpus file
     File.rename("lyrical_corpus_temp.txt", "lyrical_corpus.txt")
+  end
+
+  # ____ LIT METHODS ____ #
+
+  # Collect Wikiquote sections
+  def collect_sections
+
+  response = HTTParty.get("https://en.wikiquote.org/w/api.php?action=parse&format=json&prop=sections&page=Neil_Gaiman")
+  
+  end
+
+  def get_lit
+    literary_corpus = open("literary_corpus.txt", "a")
+    literary_corpus.truncate(0)
+
+    response = HTTParty.get(LIT_BASE_URI + "action=parse&format=json&prop=wikitext&page=Chuck_Palahniuk")
+    # json_response = JSON.parse(response)
+    lit = response["parse"]["wikitext"]
+    literary_corpus << lit
+
+    literary_corpus.close
+  end
+
+  def clean_lit
+
   end
 end
