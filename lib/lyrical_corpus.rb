@@ -4,6 +4,7 @@ class LyricalCorpus
 
   def initialize
     @path = "lyrical_corpus.txt"
+    @backup = "lyrical_corpus.bak"
   end
 
   def build_lyrical_corpus (musician)
@@ -30,7 +31,7 @@ class LyricalCorpus
   end
 
   def get_lyrics (musician)
-    lyrical_corpus = open("lyrical_corpus.txt", "a")
+    lyrical_corpus = open(@path, "a")
     #Remove old lyrics
     lyrical_corpus.truncate(0)
 
@@ -47,7 +48,7 @@ class LyricalCorpus
 
   def clean_lyrics
 
-    original_corpus = open("lyrical_corpus.txt", "r")
+    original_corpus = open(@path, "r")
     clean_corpus = open("lyrical_corpus_temp.txt", "a")
     lyrics = original_corpus.read
 
@@ -60,8 +61,8 @@ class LyricalCorpus
     clean_corpus.close
 
     # The original lyrical corpus is now a backup file
-    File.rename("lyrical_corpus.txt", "lyrical_corpus.bak")
+    File.rename(@path, @backup)
     # The clean lyrical corpus becomes the main corpus file
-    File.rename("lyrical_corpus_temp.txt", "lyrical_corpus.txt")
+    File.rename("lyrical_corpus_temp.txt", @path)
   end
 end
