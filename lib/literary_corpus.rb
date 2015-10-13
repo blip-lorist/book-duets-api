@@ -50,7 +50,7 @@ class LiteraryCorpus
     sections = collect_random_sections (author)
 
     sections.each do |section|
-      response = HTTParty.get(LIT_BASE_URI + "action=parse&format=json&page=Neil_Gaiman&prop=text&section=#{section}&disableeditsection=")
+      response = HTTParty.get(LIT_BASE_URI + "action=parse&format=json&page=#{author}&prop=text&section=#{section}&disableeditsection=")
       lit = response["parse"]["text"]["*"]
       literary_corpus << lit
     end
