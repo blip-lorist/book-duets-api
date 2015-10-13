@@ -51,28 +51,36 @@ RSpec.describe BookDuetsHelper, type: :helper do
   end
 
   context "building a literary corpus" do
-    describe "get_lit" do
-      it "collects literary quotes in a txt file" do
-        VCR.use_cassette "helper/get_lit" do
-          helper.send(:get_lit)
-
-          expect(File).to exist("literary_corpus.txt")
-          expect(File.zero?("literary_corpus.txt")).to be(false)
+    describe "collect_sections" do
+      it "collects quote sections (1.x) and their index numbers from wikiquote" do
+        VCR.use_cassette "helper/lit_sections" do
+          helper.send(:collect_sections)
         end
       end
     end
 
-    describe "clean_lit" do
-      it "removes unrelated content from the corpus" do
-        helper.send(:clean_lit)
-        corpus = File.open("literary_corpus.txt")
+    # describe "get_lit" do
+    #   it "collects literary quotes in a txt file" do
+    #     VCR.use_cassette "helper/get_lit" do
+    #       helper.send(:get_lit)
+    #
+    #       expect(File).to exist("literary_corpus.txt")
+    #       expect(File.zero?("literary_corpus.txt")).to be(false)
+    #     end
+    #   end
+    # end
 
-        expect(corpus.read).to_not include('\\n')
-        expect(corpus.read).to_not include("<")
-        expect(corpus.read).to_not include("  ")
-
-        corpus.close
-      end
-    end
+    # describe "clean_lit" do
+    #   it "removes unrelated content from the corpus" do
+    #     helper.send(:clean_lit)
+    #     corpus = File.open("literary_corpus.txt")
+    #
+    #     expect(corpus.read).to_not include('\\n')
+    #     expect(corpus.read).to_not include("<")
+    #     expect(corpus.read).to_not include("  ")
+    #
+    #     corpus.close
+    #   end
+    # end
   end
 end
