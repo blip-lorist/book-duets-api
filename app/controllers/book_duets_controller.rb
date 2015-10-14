@@ -5,23 +5,21 @@ class BookDuetsController < ApplicationController
 
 
   def custom_duet
-    duo = request.parameters
-
-    musician = duo["musician"]
-    author = duo["author"]
+    musician = params["musician"]
+    author = params["author"]
 
     # Build corpora
-    LyricalCorpus.new.build_lyrical_corpus (musician)
-    LiteraryCorpus.new.build_literary_corpus (author)
+    LyricalCorpus.new.build (musician)
+    LiteraryCorpus.new.build (author)
 
     #Stop, mashup time!
     book_duet = new_duet
-    render json: {author: duo["author"], musician: duo["musician"], mashup: book_duet}, status: :ok
+    render json: {author: params["author"], musician: params["musician"], mashup: book_duet}, status: :ok
     # TODO: Error handling!
   end
 
 
-  
+
   private
 
   def new_duet

@@ -14,7 +14,7 @@ class LiteraryCorpus
   end
 
 
-  def build_literary_corpus (author)
+  def build (author)
     get_lit (author)
     clean_lit
   end

@@ -7,7 +7,7 @@ class LyricalCorpus
     @backup = "lyrical_corpus.bak"
   end
 
-  def build_lyrical_corpus (musician)
+  def build (musician)
     get_lyrics (musician)
     clean_lyrics
   end
