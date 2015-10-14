@@ -5,3 +5,17 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+require 'csv'
+
+duos = CSV.read("musician_author_seed_data.csv", headers: false)
+
+duos.each do |row|
+  duo = {}
+  duo[:musician] = row[0]
+  duo[:author] = row[1]
+  duo[:news_source] = row[2]
+  duo[:persisted_dictionary] = row[3]
+
+  BookDuet.create(duo)
+end
