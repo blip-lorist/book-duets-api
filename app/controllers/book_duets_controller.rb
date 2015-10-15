@@ -18,7 +18,25 @@ class BookDuetsController < ApplicationController
     # TODO: Error handling!
   end
 
+  def suggested_pairing
+    offset = rand(BookDuet.count)
+    # Offsetting, since rando nums don't necessarily
+    # correspond with record ids.
+    random_pairing = BookDuet.offset(offset).first
+    raise
 
+    markov = MarkyMarkov::Dictionary.new("./dictionaries/#{random_pairing.persisted_dictionary}")
+
+    mashup = markov.generate_3_sentences
+
+    render json: {
+      author: random_pairing.author,
+      musician: random_pairing.musician,
+      news_source: random_pairing.news_source,
+      mashup: mashup
+      }, status: :ok
+
+  end
 
   private
 

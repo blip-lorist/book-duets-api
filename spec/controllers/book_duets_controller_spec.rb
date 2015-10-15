@@ -11,4 +11,11 @@ RSpec.describe BookDuetsController, type: :controller do
       end
     end
   end
+
+  describe "GET #suggested_pairing" do
+    it "is successful" do
+      get :suggested_pairing
+      expect(response.response_code).to eq(200)
+    end
+  end
 end
