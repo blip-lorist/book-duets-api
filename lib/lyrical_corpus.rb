@@ -25,7 +25,11 @@ class LyricalCorpus
       track_ids << track["track"]["track_id"]
     end
 
-    random_tracks = track_ids.shuffle!.take(5)
+    if track_ids.length == 0
+      raise "Tracks for that artist couldn't be found!"
+    else
+      random_tracks = track_ids.shuffle!.take(5)
+    end
 
     return random_tracks
   end

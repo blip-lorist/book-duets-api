@@ -9,13 +9,15 @@ class BookDuetsController < ApplicationController
     author = params["author"]
 
     # Build corpora
-    LyricalCorpus.new.build (musician)
-    LiteraryCorpus.new.build (author)
-
-    #"Stop, mashup time!"
-    book_duet = new_duet
-    render json: {author: params["author"], musician: params["musician"], mashup: book_duet}, status: :ok
-    # TODO: Error handling!
+    begin
+      LyricalCorpus.new.build (musician)
+      LiteraryCorpus.new.build (author)
+      #"Stop, mashup time!"
+      book_duet = new_duet
+      render json: {author: params["author"], musician: params["musician"], mashup: book_duet}, status: :ok
+    rescue RuntimeError
+      render json: {error: "Oh noes!"}, status: :no_content
+    end
   end
 
   def suggested_pairing
