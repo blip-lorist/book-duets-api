@@ -26,7 +26,7 @@ class LyricalCorpus
     end
 
     if track_ids.length == 0
-      raise "NoLyricsFound"
+      raise "LyricsNotFound"
     else
       random_tracks = track_ids.shuffle!.take(5)
       return random_tracks

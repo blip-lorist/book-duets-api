@@ -19,7 +19,7 @@ context "building a lyrical corpus" do
 
     it "raises an error if musician tracks aren't found on Musixmatch" do
       VCR.use_cassette 'lib/no_tracks' do
-        expect { @corpus.send(:collect_random_tracks, "asdf") }.to raise_error("NoLyricsFound")
+        expect { @corpus.send(:collect_random_tracks, "asdf") }.to raise_error("LyricsNotFound")
       end
     end
   end

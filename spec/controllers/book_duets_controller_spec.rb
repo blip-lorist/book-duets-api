@@ -11,10 +11,19 @@ RSpec.describe BookDuetsController, type: :controller do
       end
     end
 
-    it "returns a 204 if there is no content" do
-      VCR.use_cassette 'controllers/no_content', :record => :new_episodes do
+    it "returns a NoAuthorFound error if an author can't be found" do
+      VCR.use_cassette 'controllers/author_not_found', :record => :new_episodes do
         get :custom_duet, {author: "Gregory Maguire", musician: "Clint Mansell"}
-        expect(response.response_code).to eq(204)
+        json_response = JSON.parse(response.body)
+        expect(json_response["error"]).to eq("AuthorNotFound")
+      end
+    end
+
+    it "returns a NoLyricsFound error if lyrics can't be found" do
+      VCR.use_cassette 'controllers/lyrics_not_found', :record => :new_episodes do
+        get :custom_duet, {author: "Neil Gaiman", musician: "asdf"}
+        json_response = JSON.parse(response.body)
+        expect(json_response["error"]).to eq("LyricsNotFound")
       end
     end
 
@@ -23,10 +32,10 @@ RSpec.describe BookDuetsController, type: :controller do
     end
   end
 
-  describe "GET #suggested_pairing" do
-    it "is successful" do
-      get :suggested_pairing
-      expect(response.response_code).to eq(200)
-    end
-  end
+  # describe "GET #suggested_pairing" do
+  #   it "is successful" do
+  #     get :suggested_pairing
+  #     expect(response.response_code).to eq(200)
+  #   end
+  # end
 end
