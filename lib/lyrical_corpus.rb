@@ -29,9 +29,8 @@ class LyricalCorpus
       raise "NoLyricsFound"
     else
       random_tracks = track_ids.shuffle!.take(5)
+      return random_tracks
     end
-
-    return random_tracks
   end
 
   def get_lyrics (musician)

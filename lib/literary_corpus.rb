@@ -28,19 +28,23 @@ class LiteraryCorpus
 
     response = HTTParty.get("https://en.wikiquote.org/w/api.php?action=parse&format=json&prop=sections&page=#{author}")
 
-    sections = response["parse"]["sections"]
+    if response["error"]
+      raise "AuthorNotFound"
+    else
+      sections = response["parse"]["sections"]
 
-    quote_indices = []
+      quote_indices = []
 
-    sections.each do |section|
-      if section["number"].to_f < 2
-        quote_indices << section["index"]
+      sections.each do |section|
+        if section["number"].to_f < 2
+          quote_indices << section["index"]
+        end
       end
+
+      random_sections = quote_indices.shuffle!.take(4)
+
+      return random_sections
     end
-
-    random_sections = quote_indices.shuffle!.take(4)
-
-    return random_sections
   end
 
   def get_lit (author)

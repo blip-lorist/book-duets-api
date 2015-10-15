@@ -8,8 +8,8 @@ class BookDuetsController < ApplicationController
     musician = params["musician"]
     author = params["author"]
 
-    # Build corpora
     begin
+      # Build corpora
       LyricalCorpus.new.build (musician)
       LiteraryCorpus.new.build (author)
       #"Stop, mashup time!"
