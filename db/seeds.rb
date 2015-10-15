@@ -8,7 +8,7 @@
 
 require 'csv'
 
-duos = CSV.read("musician_author_seed_data.csv", headers: false)
+duos = CSV.read("musician_author_seed.csv", headers: false)
 
 duos.each do |row|
   duo = {}

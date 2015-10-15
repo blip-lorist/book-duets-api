@@ -23,7 +23,6 @@ class BookDuetsController < ApplicationController
     # Offsetting, since rando nums don't necessarily
     # correspond with record ids.
     random_pairing = BookDuet.offset(offset).first
-    raise
 
     markov = MarkyMarkov::Dictionary.new("./dictionaries/#{random_pairing.persisted_dictionary}")
 
