@@ -12,7 +12,7 @@ class BookDuetsController < ApplicationController
     LyricalCorpus.new.build (musician)
     LiteraryCorpus.new.build (author)
 
-    #Stop, mashup time!
+    #"Stop, mashup time!"
     book_duet = new_duet
     render json: {author: params["author"], musician: params["musician"], mashup: book_duet}, status: :ok
     # TODO: Error handling!
@@ -49,5 +49,4 @@ class BookDuetsController < ApplicationController
 
     return mashup
   end
-
 end
