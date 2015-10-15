@@ -16,6 +16,12 @@ context "building a lyrical corpus" do
         expect(tracks.length).to be(5)
       end
     end
+
+    it "raises an error if no tracks are found" do
+      VCR.use_cassette 'lib/no_tracks' do
+        expect { @corpus.send(:collect_random_tracks, "asdf") }.to raise_error("NoLyricsFound")
+      end
+    end
   end
 
   describe "get_lyrics" do

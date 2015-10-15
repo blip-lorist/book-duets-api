@@ -26,7 +26,7 @@ class LyricalCorpus
     end
 
     if track_ids.length == 0
-      raise "Tracks for that artist couldn't be found!"
+      raise "NoLyricsFound"
     else
       random_tracks = track_ids.shuffle!.take(5)
     end

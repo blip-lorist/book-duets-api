@@ -15,8 +15,11 @@ class BookDuetsController < ApplicationController
       #"Stop, mashup time!"
       book_duet = new_duet
       render json: {author: params["author"], musician: params["musician"], mashup: book_duet}, status: :ok
-    rescue RuntimeError
-      render json: {error: "Oh noes!"}, status: :no_content
+    rescue RuntimeError => specific_error
+      render json: {
+        error: specific_error.message,
+        suggestions: "Check your musician/author names to make sure they're spelled right. If so, try again in a few minutes."
+        }, status: :ok
     end
   end
 
