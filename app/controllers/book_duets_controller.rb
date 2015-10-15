@@ -5,14 +5,8 @@ class BookDuetsController < ApplicationController
 
 
   def custom_duet
-    musician = params["musician"]
-    author = params["author"]
-
     begin
-      # Build corpora
-      LyricalCorpus.new.build (musician)
-      LiteraryCorpus.new.build (author)
-      #"Stop, mashup time!"
+      build_corpora
       book_duet = new_duet
       render json: {author: params["author"], musician: params["musician"], mashup: book_duet}, status: :ok
     rescue RuntimeError => specific_error
@@ -43,6 +37,13 @@ class BookDuetsController < ApplicationController
   end
 
   private
+
+  def build_corpora
+    musician = params["musician"]
+    author = params["author"]
+    LyricalCorpus.new.build (musician)
+    LiteraryCorpus.new.build (author)
+  end
 
   def new_duet
     temp_dict = MarkyMarkov::TemporaryDictionary.new
