@@ -27,8 +27,7 @@ class LiteraryCorpus
   def collect_random_sections (author)
 
     response = HTTParty.get("https://en.wikiquote.org/w/api.php?action=parse&format=json&prop=sections&page=#{author}")
-
-    if response["error"]
+    if response["error"] || response["parse"]["sections"].empty?
       raise "AuthorNotFound"
     else
       sections = response["parse"]["sections"]
