@@ -1,3 +1,6 @@
+require "erb"
+include ERB::Util
+
 class BookDuetsController < ApplicationController
 
   require "./lib/lyrical_corpus"
@@ -39,8 +42,8 @@ class BookDuetsController < ApplicationController
   private
 
   def build_corpora
-    musician = params["musician"]
-    author = params["author"]
+    musician = url_encode(params["musician"])
+    author = url_encode(params["author"])
     LyricalCorpus.new.build (musician)
     LiteraryCorpus.new.build (author)
   end
