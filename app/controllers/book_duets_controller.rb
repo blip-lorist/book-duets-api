@@ -12,7 +12,7 @@ class BookDuetsController < ApplicationController
     rescue RuntimeError => specific_error
       render json: {
         error: specific_error.message,
-        suggestions: "Check your musician/author names to make sure they're spelled right. If so, try again in a few minutes."
+        suggestions: "Please ensure names are spelled correctly and include special characters."
         }, status: :ok
     end
   end
