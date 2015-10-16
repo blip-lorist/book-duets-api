@@ -27,8 +27,11 @@ RSpec.describe BookDuetsController, type: :controller do
       end
     end
 
-    it "formats artist names into an API-friendly format" do
-
+    it "uses encoding that is friendly to spaces and special characters" do
+      VCR.use_cassette "controllers/special_character_support" do
+        get :custom_duet, {author: "Anaïs Nin", musician: "Feist"}
+        expect(response.body).to_not include("error")
+      end
     end
   end
 
