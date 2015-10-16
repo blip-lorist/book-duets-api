@@ -17,6 +17,18 @@ context "building a literary corpus" do
         expect(random_sections.length).to eq(4)
       end
     end
+
+    it "raises error if author is not found on Wikiquotes" do
+      VCR.use_cassette "lib/author_not_found" do
+        expect { @corpus.send(:collect_random_sections, "asdf") }.to raise_error("AuthorNotFound")
+      end
+    end
+
+    it "raises an error if special characters are missing from an authors name" do
+      VCR.use_cassette "lib/special_characters_error" do
+        expect { @corpus.send(:collect_random_sections, "Anais Nin") }.to raise_error("AuthorNotFound")
+      end
+    end
   end
 
   describe "get_lit" do

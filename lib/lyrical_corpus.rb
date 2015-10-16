@@ -25,9 +25,12 @@ class LyricalCorpus
       track_ids << track["track"]["track_id"]
     end
 
-    random_tracks = track_ids.shuffle!.take(5)
-
-    return random_tracks
+    if track_ids.length == 0
+      raise "LyricsNotFound"
+    else
+      random_tracks = track_ids.shuffle!.take(5)
+      return random_tracks
+    end
   end
 
   def get_lyrics (musician)
