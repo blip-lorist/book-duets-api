@@ -3,13 +3,13 @@ class LyricalCorpus
   LYRICS_BASE_URI = "http://api.musixmatch.com/ws/1.1/"
 
   def initialize
-    @path = "lyrical_corpus.txt"
-    @backup = "lyrical_corpus.bak"
+    # @path = "lyrical_corpus.txt"
+    # @backup = "lyrical_corpus.bak"
   end
 
   def build (musician)
     get_lyrics (musician)
-    clean_lyrics
+    clean_lyrics (musician)
   end
 
   private
@@ -34,9 +34,11 @@ class LyricalCorpus
   end
 
   def get_lyrics (musician)
-    lyrical_corpus = open(@path, "a")
+    # lyrical_corpus = open(@path, "a")
+    lyrical_corpus = ""
+
     #Remove old lyrics
-    lyrical_corpus.truncate(0)
+    # lyrical_corpus.truncate(0)
 
     track_ids = collect_random_tracks (musician)
 
@@ -44,28 +46,32 @@ class LyricalCorpus
       response = HTTParty.get(LYRICS_BASE_URI + "track.lyrics.get?track_id=#{id}&apikey=#{ENV['MUSIX_MATCH']}")
       json_response = JSON.parse(response)
       lyrics = json_response["message"]["body"]["lyrics"]["lyrics_body"]
-      lyrical_corpus << lyrics
+      lyrical_corpus << " " + lyrics
     end
-    lyrical_corpus.close
+
+    $redis.set("#{musician}", lyrical_corpus)
+    # lyrical_corpus.close
   end
 
-  def clean_lyrics
+  def clean_lyrics (musician)
 
-    original_corpus = open(@path, "r")
-    clean_corpus = open("lyrical_corpus_temp.txt", "a")
-    lyrics = original_corpus.read
+    lyrics = $redis[musician]
+    # clean_corpus = open("lyrical_corpus_temp.txt", "a")
+    # lyrics = original_corpus.read
 
     # Cleaning the lyrics
     lyrics.gsub!("******* This Lyrics is NOT for Commercial use *******", "")
     lyrics.gsub!("...", "")
-    clean_corpus.write(lyrics)
+
+    $redis[musician] = lyrics
+    # clean_corpus.write(lyrics)
     # TODO: Obscenity filter? Or should this happen at the very end of the mashup?
-    original_corpus.close
-    clean_corpus.close
+    # original_corpus.close
+    # clean_corpus.close
 
     # The original lyrical corpus is now a backup file
-    File.rename(@path, @backup)
+    # File.rename(@path, @backup)
     # The clean lyrical corpus becomes the main corpus file
-    File.rename("lyrical_corpus_temp.txt", @path)
+    # File.rename("lyrical_corpus_temp.txt", @path)
   end
 end
