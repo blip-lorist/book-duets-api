@@ -3,14 +3,14 @@ include ERB::Util
 
 class BookDuetsController < ApplicationController
 
-  require "./lib/lyrical_corpus"
-  require "./lib/literary_corpus"
+  # require "./lib/lyrical_corpus"
+  # require "./lib/literary_corpus"
 
 
   def custom_duet
     begin
       build_corpora
-      book_duet = new_duet
+      book_duet = new_duet(params["musician"], params["author"])
       render json: {author: params["author"], musician: params["musician"], mashup: book_duet}, status: :ok
     rescue RuntimeError => specific_error
       render json: {
@@ -48,10 +48,12 @@ class BookDuetsController < ApplicationController
     LiteraryCorpus.new.build (author)
   end
 
-  def new_duet
+  def new_duet (musician, author)
     temp_dict = MarkyMarkov::TemporaryDictionary.new
-    temp_dict.parse_file "literary_corpus.txt"
-    temp_dict.parse_file "lyrical_corpus.txt"
+    # temp_dict.parse_file "literary_corpus.txt"
+    # temp_dict.parse_file "lyrical_corpus.txt"
+    temp_dict.parse_string("#{$redis[musician]}")
+    temp_dict.parse_string("#{$redis[author]}")
 
     mashup = temp_dict.generate_3_sentences
     temp_dict.clear!
