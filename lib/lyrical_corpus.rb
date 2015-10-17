@@ -45,7 +45,9 @@ class LyricalCorpus
       lyrical_corpus << " " + lyrics
     end
 
-    $redis.set("#{musician}", lyrical_corpus)
+    $redis.set(musician, lyrical_corpus)
+    # Expire the corpus in 5 minutes
+    $redis.expire(musician, 300)
   end
 
   def clean_lyrics (musician)

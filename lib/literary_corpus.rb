@@ -56,7 +56,9 @@ class LiteraryCorpus
       literary_corpus << lit
     end
 
-    $redis.set("#{author}", literary_corpus)
+    $redis.set(author, literary_corpus)
+    # Expire the corpus in 5 minutes
+    $redis.expire(author, 300)
   end
 
   def clean_lit (author)
