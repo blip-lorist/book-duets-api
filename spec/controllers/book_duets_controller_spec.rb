@@ -35,10 +35,26 @@ RSpec.describe BookDuetsController, type: :controller do
     end
   end
 
-  # describe "GET #suggested_pairing" do
-  #   it "is successful" do
-  #     get :suggested_pairing
-  #     expect(response.response_code).to eq(200)
-  #   end
-  # end
+  describe "redis caching" do
+
+    before(:each) do
+      VCR.use_cassette "controllers/redis_caching", :record => :new_episodes  do
+        get :custom_duet, {author: "J. M. Barrie", musician: "Feist"}
+        @cached_lyrical_corpus = $redis["Feist"]
+        @cached_literary_corpus = $redis["J. M. Barrie"]
+      end
+    end
+
+    it "avoids building lyrical_corpus if it is cached in redis" do
+      controller.send(:build_corpora)
+
+      expect(@cached_lyrical_corpus).to eq($redis["Feist"])
+    end
+
+    it "avoids building literary_corpus if it is cached in redis" do
+      controller.send(:build_corpora)
+
+      expect(@cached_literary_corpus).to eq($redis["J. M. Barrie"])
+    end
+  end
 end

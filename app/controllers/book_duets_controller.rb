@@ -45,8 +45,17 @@ class BookDuetsController < ApplicationController
   private
 
   def build_corpora
-    LyricalCorpus.new.build (params["musician"])
-    LiteraryCorpus.new.build (params["author"])
+    musician = params["musician"]
+    author = params["author"]
+
+    #TODO: also add a ttl condition just in case it's about to expire
+    unless $redis.exists(musician)
+      LyricalCorpus.new.build (musician)
+    end
+
+    unless $redis.exists(author)
+      LiteraryCorpus.new.build (author)
+    end
   end
 
   def new_duet (musician, author)
