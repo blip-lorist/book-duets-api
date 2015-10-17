@@ -28,7 +28,7 @@ RSpec.describe BookDuetsController, type: :controller do
     end
 
     it "uses encoding that is friendly to spaces and special characters" do
-      VCR.use_cassette "controllers/special_character_support" do
+      VCR.use_cassette "controllers/special_character_support", :record => :new_episodes  do
         get :custom_duet, {author: "Anaïs Nin", musician: "Feist"}
         expect(response.body).to_not include("error")
       end

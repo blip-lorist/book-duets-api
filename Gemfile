@@ -54,6 +54,7 @@ group :development, :test do
 
   gem 'simplecov', require: false
 
+  gem 'mock_redis'
 end
 
 group :development do
