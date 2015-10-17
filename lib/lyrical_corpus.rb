@@ -64,8 +64,8 @@ class LyricalCorpus
     lyrics.gsub!("...", "")
 
     $redis[musician] = lyrics
+    # TODO: This should expire within a certain amount of time
     # clean_corpus.write(lyrics)
-    # TODO: Obscenity filter? Or should this happen at the very end of the mashup?
     # original_corpus.close
     # clean_corpus.close
 
