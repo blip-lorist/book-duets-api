@@ -1,7 +1,4 @@
 require 'rails_helper'
-require 'vcr_setup'
-require 'mock_redis'
-require 'lyrical_corpus'
 
 context "building a lyrical corpus" do
   before(:each) do
