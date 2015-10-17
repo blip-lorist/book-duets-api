@@ -64,7 +64,13 @@ class LiteraryCorpus
     clean_quotes = Sanitize.fragment(quotes, :remove_contents => ['h3', 'dd','a', 'i'])
     clean_quotes.delete!("\n")
     clean_quotes.squeeze!(" ")
-    # TODO: Add numbers and "chapter" perhaps.
+
+    banned_patterns = ["Ch.", "Ch ", "Chapter", "Line"]
+
+    banned_patterns.each do |pattern|
+      clean_quotes.gsub!(pattern, "")
+    end
+
     $redis[author] = clean_quotes
   end
 end

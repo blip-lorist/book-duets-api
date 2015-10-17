@@ -9,7 +9,6 @@ context "building a lyrical corpus" do
     it "retrieves five random tracks for Nickelback" do
       VCR.use_cassette 'lib/random_track_collection' do
         tracks = (@corpus.send(:collect_random_tracks, "Nickelback"))
-
         expect(tracks).to be_an_instance_of(Array)
         expect(tracks.length).to be(5)
       end
