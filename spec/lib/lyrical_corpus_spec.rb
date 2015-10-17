@@ -1,5 +1,6 @@
 require 'rails_helper'
 require 'vcr_setup'
+require 'mock_redis'
 require 'lyrical_corpus'
 
 context "building a lyrical corpus" do
@@ -26,26 +27,22 @@ context "building a lyrical corpus" do
 
   describe "get_lyrics" do
     it "collects lyrics in redis" do
-      # VCR.use_cassette 'lib/get_lyrics', :record => :new_episodes do
-      #   @corpus.send(:get_lyrics, "Nickelback")
-      #
-      #   expect(File).to exist("lyrical_corpus.txt")
-      #   expect(File.zero?("lyrical_corpus.txt")).to be(false)
-      #   # Ensures that the file isn't empty. Difficult to test actual
-      #   # content since it's randomly selected
-      # end
+      VCR.use_cassette 'lib/get_lyrics', :record => :new_episodes do
+        @corpus.send(:get_lyrics, "Nickelback")
+          expect($redis["Nickelback"]).to_not be(nil)
+          expect($redis["Nickelback"]).to be_an_instance_of(String)
+      end
     end
   end
 
   describe "clean_lyrics" do
     it "removes non-lyrical content from the corpus" do
-      # @corpus.send(:clean_lyrics)
-      # corpus = File.open("lyrical_corpus.txt")
-      # lyrics = corpus.read
-      # expect(lyrics).to_not include("******* This Lyrics is NOT for Commercial use *******")
-      # expect(lyrics).to_not include("...")
-      #
-      # corpus.close
+      VCR.use_cassette 'lib/clean_lyrics', :record => :new_episodes do
+        @corpus.send(:get_lyrics, "Nickelback")
+        @corpus.send(:clean_lyrics, "Nickelback")
+          expect($redis["Nickelback"]).to_not include("******* This Lyrics is NOT for Commercial use *******")
+          expect($redis["Nickelback"]).to_not include("...")
+      end
     end
   end
 end
