@@ -45,11 +45,8 @@ class BookDuetsController < ApplicationController
   private
 
   def build_corpora
-    musician_en = url_encode(params["musician"])
-    author_en = url_encode(params["author"])
-
-    LyricalCorpus.new.build (musician_en)
-    LiteraryCorpus.new.build (author_en)
+    LyricalCorpus.new.build (params["musician"])
+    LiteraryCorpus.new.build (params["author"])
   end
 
   def new_duet (musician, author)

@@ -14,7 +14,9 @@ class LyricalCorpus
 
   # ____ LYRIC METHODS ____ #
   def collect_random_tracks (musician)
-    response = HTTParty.get(LYRICS_BASE_URI + "track.search?q_artist=#{musician}&f_has_lyrics=1&page_size=20&format=json&apikey=#{ENV['MUSIX_MATCH']}")
+    musician_en = url_encode(musician)
+
+    response = HTTParty.get(LYRICS_BASE_URI + "track.search?q_artist=#{musician_en}&f_has_lyrics=1&page_size=20&format=json&apikey=#{ENV['MUSIX_MATCH']}")
     json_response = JSON.parse(response)
     tracks = json_response["message"]["body"]["track_list"]
 
