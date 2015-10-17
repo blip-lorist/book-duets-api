@@ -38,7 +38,7 @@ class LiteraryCorpus
         end
       end
 
-      random_sections = quote_indices.shuffle!.take(4)
+      random_sections = quote_indices.shuffle!.take(3)
 
       return random_sections
     end

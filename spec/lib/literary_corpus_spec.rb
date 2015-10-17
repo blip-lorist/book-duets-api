@@ -14,7 +14,7 @@ context "building a literary corpus" do
         random_sections = @corpus.send(:collect_random_sections, "Neil Gaiman")
 
         expect(random_sections).to be_an_instance_of(Array)
-        expect(random_sections.length).to eq(4)
+        expect(random_sections.length).to eq(3)
       end
     end
 
