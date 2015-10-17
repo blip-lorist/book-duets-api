@@ -9,8 +9,6 @@ class LiteraryCorpus
   LIT_BASE_URI = "https://en.wikiquote.org/w/api.php?"
 
   def initialize
-    # @path = "literary_corpus.txt"
-    # @backup = "literary_corpus.bak"
   end
 
 
@@ -47,8 +45,6 @@ class LiteraryCorpus
   end
 
   def get_lit (author)
-    # literary_corpus = open("literary_corpus.txt", "a")
-    # literary_corpus.truncate(0)
     literary_corpus = ""
 
     sections = collect_random_sections (author)
@@ -60,28 +56,15 @@ class LiteraryCorpus
     end
 
     $redis.set("#{author}", literary_corpus)
-    # literary_corpus.close
-
   end
 
   def clean_lit (author)
     quotes = $redis[author]
-    # original_corpus = open("literary_corpus.txt", "r")
-    # clean_corpus = open("literary_corpus_temp.txt", "a")
-    # quotes = original_corpus.read
-    # Cleaning the literary quotes
+
     clean_quotes = Sanitize.fragment(quotes, :remove_contents => ['h3', 'dd','a', 'i'])
     clean_quotes.delete!("\n")
     clean_quotes.squeeze!(" ")
     # TODO: Add numbers and "chapter" perhaps.
     $redis[author] = clean_quotes
-    # # clean_corpus.write(clean_quotes)
-    # #
-    # # original_corpus.close
-    # # clean_corpus.close
-    #
-    # File.rename("literary_corpus.txt", "literary_corpus.bak")
-    # File.rename("literary_corpus_temp.txt", "literary_corpus.txt")
   end
-
 end

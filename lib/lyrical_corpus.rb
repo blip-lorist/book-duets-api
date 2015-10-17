@@ -3,8 +3,6 @@ class LyricalCorpus
   LYRICS_BASE_URI = "http://api.musixmatch.com/ws/1.1/"
 
   def initialize
-    # @path = "lyrical_corpus.txt"
-    # @backup = "lyrical_corpus.bak"
   end
 
   def build (musician)
@@ -34,11 +32,7 @@ class LyricalCorpus
   end
 
   def get_lyrics (musician)
-    # lyrical_corpus = open(@path, "a")
     lyrical_corpus = ""
-
-    #Remove old lyrics
-    # lyrical_corpus.truncate(0)
 
     track_ids = collect_random_tracks (musician)
 
@@ -50,14 +44,10 @@ class LyricalCorpus
     end
 
     $redis.set("#{musician}", lyrical_corpus)
-    # lyrical_corpus.close
   end
 
   def clean_lyrics (musician)
-
     lyrics = $redis[musician]
-    # clean_corpus = open("lyrical_corpus_temp.txt", "a")
-    # lyrics = original_corpus.read
 
     # Cleaning the lyrics
     lyrics.gsub!("******* This Lyrics is NOT for Commercial use *******", "")
@@ -65,13 +55,5 @@ class LyricalCorpus
 
     $redis[musician] = lyrics
     # TODO: This should expire within a certain amount of time
-    # clean_corpus.write(lyrics)
-    # original_corpus.close
-    # clean_corpus.close
-
-    # The original lyrical corpus is now a backup file
-    # File.rename(@path, @backup)
-    # The clean lyrical corpus becomes the main corpus file
-    # File.rename("lyrical_corpus_temp.txt", @path)
   end
 end

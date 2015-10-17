@@ -3,15 +3,18 @@ include ERB::Util
 
 class BookDuetsController < ApplicationController
 
-  # require "./lib/lyrical_corpus"
-  # require "./lib/literary_corpus"
+  require "./lib/lyrical_corpus"
+  require "./lib/literary_corpus"
 
 
   def custom_duet
+    musician = params["musician"]
+    author = params["author"]
+
     begin
       build_corpora
-      book_duet = new_duet(params["musician"], params["author"])
-      render json: {author: params["author"], musician: params["musician"], mashup: book_duet}, status: :ok
+      book_duet = new_duet(musician, author)
+      render json: {musician: musician, author: author, mashup: book_duet}, status: :ok
     rescue RuntimeError => specific_error
       render json: {
         error: specific_error.message,
@@ -42,16 +45,15 @@ class BookDuetsController < ApplicationController
   private
 
   def build_corpora
-    musician = url_encode(params["musician"])
-    author = url_encode(params["author"])
-    LyricalCorpus.new.build (musician)
-    LiteraryCorpus.new.build (author)
+    musician_en = url_encode(params["musician"])
+    author_en = url_encode(params["author"])
+
+    LyricalCorpus.new.build (musician_en)
+    LiteraryCorpus.new.build (author_en)
   end
 
   def new_duet (musician, author)
     temp_dict = MarkyMarkov::TemporaryDictionary.new
-    # temp_dict.parse_file "literary_corpus.txt"
-    # temp_dict.parse_file "lyrical_corpus.txt"
     temp_dict.parse_string("#{$redis[musician]}")
     temp_dict.parse_string("#{$redis[author]}")
 
