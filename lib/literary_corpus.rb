@@ -23,9 +23,7 @@ class LiteraryCorpus
 
   # Collect Wikiquote sections
   def collect_random_sections (author)
-    author_en = url_encode(author)
-
-    response = HTTParty.get("https://en.wikiquote.org/w/api.php?action=parse&format=json&prop=sections&page=#{author_en}")
+    response = HTTParty.get("https://en.wikiquote.org/w/api.php?action=parse&format=json&prop=sections&page=#{author}")
     if response["error"] || response["parse"]["sections"].empty?
       raise "AuthorNotFound"
     else
@@ -46,12 +44,13 @@ class LiteraryCorpus
   end
 
   def get_lit (author)
+    author_en = url_encode(author)
     literary_corpus = ""
 
-    sections = collect_random_sections (author)
+    sections = collect_random_sections (author_en)
 
     sections.each do |section|
-      response = HTTParty.get(LIT_BASE_URI + "action=parse&format=json&page=#{author}&prop=text&section=#{section}&disableeditsection=")
+      response = HTTParty.get(LIT_BASE_URI + "action=parse&format=json&page=#{author_en}&prop=text&section=#{section}&disableeditsection=")
       lit = response["parse"]["text"]["*"]
       literary_corpus << lit
     end
