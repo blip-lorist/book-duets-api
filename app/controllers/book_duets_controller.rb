@@ -45,8 +45,8 @@ class BookDuetsController < ApplicationController
   private
 
   def build_corpora
-    musician = params["musician"]
-    author = params["author"]
+    musician = params["musician"].gsub("_", " ")
+    author = params["author"].gsub("_", " ")
 
     #TODO: also add a ttl condition just in case it's about to expire
     unless $redis.exists(musician)

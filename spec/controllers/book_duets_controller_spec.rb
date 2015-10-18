@@ -6,7 +6,7 @@ RSpec.describe BookDuetsController, type: :controller do
   describe "GET #custom_duet" do
     it "returns 200 if a custom duet build is successful" do
       VCR.use_cassette 'controllers/custom_duet', :record => :new_episodes do
-        get :custom_duet, {author: "Neil Gaiman", musician: "Nickelback"}
+        get :custom_duet, {author: "Neil_Gaiman", musician: "Nickelback"}
         expect(response.response_code).to eq(200)
       end
     end
@@ -31,6 +31,14 @@ RSpec.describe BookDuetsController, type: :controller do
       VCR.use_cassette "controllers/special_character_support", :record => :new_episodes  do
         get :custom_duet, {author: "Anaïs Nin", musician: "Mötorhead"}
         expect(response.body).to_not include("error")
+      end
+    end
+
+    it "standardizes redis artist name keys so that they don't include underscores" do
+      VCR.use_cassette 'controllers/custom_duet', :record => :new_episodes do
+        get :custom_duet, {author: "Neil_Gaiman", musician: "Nickelback"}
+        expect($redis.exists("Neil_Gaiman")).to eq(false)
+        expect($redis.exists("Neil Gaiman")).to eq(true)
       end
     end
   end
