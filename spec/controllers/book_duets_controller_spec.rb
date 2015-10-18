@@ -56,5 +56,21 @@ RSpec.describe BookDuetsController, type: :controller do
 
       expect(@cached_literary_corpus).to eq($redis["J. M. Barrie"])
     end
+
+    it "will not persist musician keys in redis" do
+      expect($redis.ttl("Feist")).to_not eq(-1)
+    end
+
+    it "will not persist author keys in redis" do
+      expect($redis.ttl("J. M. Barrie")).to_not eq(-1)
+    end
+
+    it "caches musician keys for at least 300 seconds (5 min)" do
+      expect($redis.ttl("Feist")).to be <=(300)
+    end
+
+    it "caches author keys for at least 300 seconds (5 min)" do
+      expect($redis.ttl("J. M. Barrie")).to be <=(300)
+    end
   end
 end
