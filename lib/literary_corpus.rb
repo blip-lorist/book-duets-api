@@ -57,8 +57,6 @@ class LiteraryCorpus
     end
 
     $redis.set(author, literary_corpus)
-    # Expire the corpus in 5 minutes
-    $redis.expire(author, 300)
   end
 
   def clean_lit (author)
@@ -74,6 +72,10 @@ class LiteraryCorpus
       clean_quotes.gsub!(pattern, "")
     end
 
-    $redis[author] = clean_quotes
+    #Expire corpus in 5 minutes
+    $redis.multi do
+      $redis[author] = clean_quotes
+      $redis.expire(author, 300)
+    end
   end
 end

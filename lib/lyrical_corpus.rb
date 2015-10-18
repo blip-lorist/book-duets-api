@@ -46,8 +46,6 @@ class LyricalCorpus
     end
 
     $redis.set(musician, lyrical_corpus)
-    # Expire the corpus in 5 minutes
-    $redis.expire(musician, 300)
   end
 
   def clean_lyrics (musician)
@@ -57,7 +55,10 @@ class LyricalCorpus
     lyrics.gsub!("******* This Lyrics is NOT for Commercial use *******", "")
     lyrics.gsub!("...", "")
 
-    $redis[musician] = lyrics
+    $redis.multi do
+      $redis[musician] = lyrics
+      $redis.expire(musician, 300)
+    end
     # TODO: This should expire within a certain amount of time
   end
 end
