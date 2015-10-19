@@ -31,7 +31,7 @@ gem 'sanitize', '~> 4.0.0'
 gem 'httparty'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
+gem 'redis'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -54,6 +54,7 @@ group :development, :test do
 
   gem 'simplecov', require: false
 
+  gem 'mock_redis'
 end
 
 group :development do
