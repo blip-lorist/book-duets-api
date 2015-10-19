@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   get "/suggested_pairing" => "suggested_pairings#random_pairing", as: "suggested_pairing"
 
+  post "/register" => "users#new", as: "new_user"
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
