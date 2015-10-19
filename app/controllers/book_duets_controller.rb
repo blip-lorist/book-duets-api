@@ -2,17 +2,15 @@ require "erb"
 include ERB::Util
 
 class BookDuetsController < ApplicationController
-
   require "./lib/lyrical_corpus"
   require "./lib/literary_corpus"
 
-
   def custom_duet
-    musician = params["musician"]
-    author = params["author"]
+    musician = params["musician"].gsub("_", " ")
+    author = params["author"].gsub("_", " ")
 
     begin
-      build_corpora
+      build_corpora(musician, author)
       book_duet = new_duet(musician, author)
       render json: {musician: musician, author: author, mashup: book_duet}, status: :ok
     rescue RuntimeError => specific_error
@@ -44,17 +42,16 @@ class BookDuetsController < ApplicationController
 
   private
 
-  def build_corpora
-    musician = params["musician"].gsub("_", " ")
-    author = params["author"].gsub("_", " ")
-
-    #TODO: also add a ttl condition just in case it's about to expire
+  def build_corpora (musician, author)
     unless $redis.exists(musician)
-      LyricalCorpus.new.build (musician)
+      lyrical_corpus = LyricalCorpus.new(musician)
+      lyrical_corpus.build
+      # LyricalCorpus.new.build (musician)
     end
 
     unless $redis.exists(author)
-      LiteraryCorpus.new.build (author)
+      literary_corpus = LiteraryCorpus.new(author)
+      literary_corpus.build
     end
   end
 
