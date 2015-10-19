@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151014063119) do
+ActiveRecord::Schema.define(version: 20151019033938) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "book_duets", force: :cascade do |t|
+  create_table "suggested_pairings", force: :cascade do |t|
     t.string   "musician"
     t.string   "author"
     t.string   "news_source"
