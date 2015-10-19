@@ -43,7 +43,7 @@ RSpec.describe BookDuetsController, type: :controller do
     end
   end
 
-  describe "redis caching" do
+  describe "corpora caching" do
 
     before(:each) do
       VCR.use_cassette "controllers/redis_caching", :record => :new_episodes  do
@@ -80,5 +80,20 @@ RSpec.describe BookDuetsController, type: :controller do
     it "caches author keys for at least 300 seconds (5 min)" do
       expect($redis.ttl("J. M. Barrie")).to be <=(300)
     end
+  end
+
+  describe "logging corpora build frequency" do
+
+    before(:each) do
+      VCR.use_cassette "controllers/build_frequency", :record => :new_episodes  do
+        get :custom_duet, {author: "Octavia Butler", musician: "Sleater-Kinney"}
+      end
+    end
+
+    it "creates a sorted set entry once a corpus is build" do
+      expect($redis.zscore("Musicians", "Sleater-Kinney")).to eq(1.0)
+      expect($redis.zscore("Authors", "Octavia Butler")).to eq(1.0)
+    end
+
   end
 end
