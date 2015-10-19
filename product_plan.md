@@ -35,16 +35,40 @@ To reduce the likelihood of boring or repetitive Book Duets, I might want to fal
     - Sandberg + Sisqo
     - Asimov + Bowie
 
-## What I've Accomplished So Far
-  - Book Duets mockup
-  - Markov chain practice
-  - Purchased domain
-  - NLP research
-  - Identified necessary APIs (Musixmatch and WikiQuote)
-  - Data cleaning and dictionary research
-  - Chatted with two devs about data persistence, Markov chains, and performance
-  - First green spec, hitting the lyrics API
-
-
-## Deliverable Goals for Next Week
+## Deliverable Goals for Week 3
   - An API that returns a rough mashup of literary and lyrical content.
+    - It caches popular corpora
+    - It is a secure public API
+    - It has documentation
+
+## Deliverable Goals for Week 4
+  - Customer-facing web app
+
+## Deliverable Goals for Week 5
+  - Customer-facing web app that allows users to sign in, save and share fav Book Duets
+
+### Overall Goals & Guidelines
+- Use your product plan to lead the functionality development of their application
+- Create and maintain a [Trello board](https://trello.com/) to document progress on your project.
+- Host the application using a VPS such as Amazon EC2
+- **DONE** Configure DNS with custom domain
+- Create a stylized, responsive design for all devices (phone, tablet, display) **(Bootstrappin)**
+- At least 10 items of seed data for each concept/model **Done**
+- Use background jobs for any long running tasks (email, image processing, 3rd party data manipulation)
+- **DONE** Use caching for slow or bulky database interactions
+- Use performance analytics to asses and optimize site performance (average server response time < 300ms)
+- Practice TDD to lead the development process
+- Integrate email (At least user signup)
+- Expectations for code quality:
+    - 90% or greater test coverage (models and controllers)
+    - Javascript tests (client and server side) w/ Mocha
+    - B- or greater score on Code Climate
+    - No security issues (Brakeman)
+
+### Integration Choices
+  - NoSql (MongoDB) **Redis**
+  - Third-party OAuth (logging in w/ Twitter, Github, etc.) **this one**
+
+### Advanced Feature Choices
+  - Service Oriented Architecture (SOA) **this one**
+  - Secure Public API (documented) **this one**
