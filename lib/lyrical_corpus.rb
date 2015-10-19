@@ -8,6 +8,7 @@ class LyricalCorpus
   def build (musician)
     get_lyrics (musician)
     clean_lyrics (musician)
+    log_build (musician)
   end
 
   private
@@ -60,5 +61,9 @@ class LyricalCorpus
       $redis.expire(musician, 300)
     end
     # TODO: This should expire within a certain amount of time
+  end
+
+  def log_build (musician)
+    $redis.zincrby("Musicians", 1.0, musician)
   end
 end

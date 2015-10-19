@@ -15,6 +15,7 @@ class LiteraryCorpus
   def build (author)
     get_lit (author)
     clean_lit (author)
+    log_build (author)
   end
 
   private
@@ -76,5 +77,9 @@ class LiteraryCorpus
       $redis[author] = clean_quotes
       $redis.expire(author, 300)
     end
+  end
+
+  def log_build (author)
+    $redis.zincrby("Authors", 1.0, author)
   end
 end
