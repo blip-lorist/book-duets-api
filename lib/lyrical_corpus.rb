@@ -65,6 +65,8 @@ class LyricalCorpus
   end
 
   def cache_corpus (musician)
+    # If popular, cache for a week. Otherwise, cache for 5 min.
+
     if $redis.zscore("Musicians Log", musician) >= 5
       $redis.expire(musician, 604800)
     else
