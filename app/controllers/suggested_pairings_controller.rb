@@ -8,13 +8,13 @@ class SuggestedPairingsController < ApplicationController
 
     markov = MarkyMarkov::Dictionary.new("./dictionaries/#{random_pairing.persisted_dictionary}")
 
-    mashup = markov.generate_3_sentences
+    book_duet = markov.generate_3_sentences
 
     render json: {
       author: random_pairing.author,
       musician: random_pairing.musician,
       news_source: random_pairing.news_source,
-      mashup: mashup
+      book_duet: mashup
       }, status: :ok
 
   end

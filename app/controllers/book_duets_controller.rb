@@ -9,7 +9,7 @@ class BookDuetsController < ApplicationController
     begin
       build_corpora(musician, author)
       book_duet = new_duet(musician, author)
-      render json: {musician: musician, author: author, mashup: book_duet}, status: :ok
+      render json: {musician: musician, author: author, book_duet: book_duet}, status: :ok
     rescue RuntimeError => specific_error
       render json: {
         error: specific_error.message,
