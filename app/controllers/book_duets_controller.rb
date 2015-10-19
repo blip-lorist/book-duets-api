@@ -1,6 +1,3 @@
-require "erb"
-include ERB::Util
-
 class BookDuetsController < ApplicationController
   require "./lib/lyrical_corpus"
   require "./lib/literary_corpus"

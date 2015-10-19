@@ -1,3 +1,5 @@
+require "erb"
+include ERB::Util
 
 class LiteraryCorpus
   # URI for sections

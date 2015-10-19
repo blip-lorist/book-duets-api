@@ -54,13 +54,13 @@ RSpec.describe BookDuetsController, type: :controller do
     end
 
     it "avoids building lyrical_corpus if it is cached in redis" do
-      controller.send(:build_corpora)
+      controller.send(:build_corpora, "Feist", "J. M. Barrie")
 
       expect(@cached_lyrical_corpus).to eq($redis["Feist"])
     end
 
     it "avoids building literary_corpus if it is cached in redis" do
-      controller.send(:build_corpora)
+      controller.send(:build_corpora, "Feist", "J. M. Barrie")
 
       expect(@cached_literary_corpus).to eq($redis["J. M. Barrie"])
     end

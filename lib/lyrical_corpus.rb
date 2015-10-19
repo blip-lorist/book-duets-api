@@ -1,3 +1,6 @@
+require "erb"
+include ERB::Util
+
 class LyricalCorpus
 
   LYRICS_BASE_URI = "http://api.musixmatch.com/ws/1.1/"
