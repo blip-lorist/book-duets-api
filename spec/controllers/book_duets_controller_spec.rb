@@ -108,5 +108,19 @@ RSpec.describe BookDuetsController, type: :controller do
       expect($redis.zscore("Authors Log", "Octavia Butler")).to eq(2.0)
     end
 
+    it "caches popular artists for one week" do
+      4.times do
+        # Force "expire" these entries so that corpora are rebuilt
+        $redis.del("Sleater-Kinney")
+        $redis.del("Octavia Butler")
+
+        VCR.use_cassette "controllers/build_frequency", :record => :new_episodes  do
+          get :custom_duet, {author: "Octavia Butler", musician: "Sleater-Kinney"}
+        end
+      end
+
+      expect($redis.ttl("Sleater-Kinney")).to be_between(300, 604800).inclusive
+      expect($redis.ttl("Octavia Butler")).to be_between(300, 604800).inclusive
+    end
   end
 end

@@ -16,6 +16,7 @@ class LiteraryCorpus
     get_lit (author)
     clean_lit (author)
     log_build (author)
+    cache_corpus (author)
   end
 
   private
@@ -73,13 +74,18 @@ class LiteraryCorpus
     end
 
     #Expire corpus in 5 minutes
-    $redis.multi do
-      $redis[author] = clean_quotes
-      $redis.expire(author, 300)
-    end
+    $redis[author] = clean_quotes
   end
 
   def log_build (author)
     $redis.zincrby("Authors Log", 1.0, author)
+  end
+
+  def cache_corpus (author)
+    if $redis.zscore("Authors Log", author) >= 5
+      $redis.expire(author, 604800)
+    else
+      $redis.expire(author, 300)
+    end
   end
 end

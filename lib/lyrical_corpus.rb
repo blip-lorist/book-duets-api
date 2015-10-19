@@ -9,6 +9,7 @@ class LyricalCorpus
     get_lyrics (musician)
     clean_lyrics (musician)
     log_build (musician)
+    cache_corpus (musician)
   end
 
   private
@@ -56,14 +57,19 @@ class LyricalCorpus
     lyrics.gsub!("******* This Lyrics is NOT for Commercial use *******", "")
     lyrics.gsub!("...", "")
 
-    $redis.multi do
-      $redis[musician] = lyrics
-      $redis.expire(musician, 300)
-    end
-    # TODO: This should expire within a certain amount of time
+    $redis[musician] = lyrics
   end
 
   def log_build (musician)
     $redis.zincrby("Musicians Log", 1.0, musician)
   end
+
+  def cache_corpus (musician)
+    if $redis.zscore("Musicians Log", musician) >= 5
+      $redis.expire(musician, 604800)
+    else
+      $redis.expire(musician, 300)
+    end
+  end
+
 end
