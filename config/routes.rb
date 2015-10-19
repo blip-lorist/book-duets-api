@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   #/custom_duet?musician=Nickelback&author=Neil_Gaiman
   get "/custom_duet" => "book_duets#custom_duet", as: "custom_duet"
 
-  get "/suggested_pairing" => "suggested_pairings#get_pairing", as: "suggested_pairing"
+  get "/suggested_pairing" => "suggested_pairings#random_pairing", as: "suggested_pairing"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

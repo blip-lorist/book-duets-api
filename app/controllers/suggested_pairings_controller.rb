@@ -1,6 +1,6 @@
 class SuggestedPairingsController < ApplicationController
 
-  def get_pairing
+  def random_pairing
     offset = rand(SuggestedPairing.count)
     # Offsetting, since rando nums don't necessarily
     # correspond with record ids.
@@ -14,7 +14,7 @@ class SuggestedPairingsController < ApplicationController
       author: random_pairing.author,
       musician: random_pairing.musician,
       news_source: random_pairing.news_source,
-      book_duet: mashup
+      book_duet: book_duet
       }, status: :ok
 
   end
