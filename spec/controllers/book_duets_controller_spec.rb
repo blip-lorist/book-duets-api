@@ -3,6 +3,11 @@ require 'vcr_setup'
 
 RSpec.describe BookDuetsController, type: :controller do
 
+  # Skip the authentication for testing porpoises
+  before(:each) do
+    BookDuetsController.skip_before_filter :authenticate
+  end
+
   describe "GET #custom_duet" do
     it "returns 200 if a custom duet build is successful" do
       VCR.use_cassette 'controllers/custom_duet', :record => :new_episodes do
