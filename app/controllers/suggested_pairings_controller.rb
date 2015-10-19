@@ -1,4 +1,5 @@
 class SuggestedPairingsController < ApplicationController
+before_filter :authenticate
 
   def random_pairing
     offset = rand(SuggestedPairing.count)

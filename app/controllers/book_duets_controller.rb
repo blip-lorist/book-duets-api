@@ -1,4 +1,6 @@
 class BookDuetsController < ApplicationController
+  before_filter :authenticate
+
   require "./lib/lyrical_corpus"
   require "./lib/literary_corpus"
 
