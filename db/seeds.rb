@@ -17,5 +17,5 @@ duos.each do |row|
   duo[:news_source] = row[2]
   duo[:persisted_dictionary] = row[3]
 
-  BookDuet.create(duo)
+  SuggestedPairing.create(duo)
 end

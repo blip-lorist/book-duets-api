@@ -9,32 +9,13 @@ class BookDuetsController < ApplicationController
     begin
       build_corpora(musician, author)
       book_duet = new_duet(musician, author)
-      render json: {musician: musician, author: author, mashup: book_duet}, status: :ok
+      render json: {musician: musician, author: author, book_duet: book_duet}, status: :ok
     rescue RuntimeError => specific_error
       render json: {
         error: specific_error.message,
         suggestions: "Please ensure names are spelled correctly and include special characters."
         }, status: :ok
     end
-  end
-
-  def suggested_pairing
-    offset = rand(BookDuet.count)
-    # Offsetting, since rando nums don't necessarily
-    # correspond with record ids.
-    random_pairing = BookDuet.offset(offset).first
-
-    markov = MarkyMarkov::Dictionary.new("./dictionaries/#{random_pairing.persisted_dictionary}")
-
-    mashup = markov.generate_3_sentences
-
-    render json: {
-      author: random_pairing.author,
-      musician: random_pairing.musician,
-      news_source: random_pairing.news_source,
-      mashup: mashup
-      }, status: :ok
-
   end
 
   private
