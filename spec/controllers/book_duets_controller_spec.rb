@@ -90,9 +90,22 @@ RSpec.describe BookDuetsController, type: :controller do
       end
     end
 
-    it "creates a sorted set entry once a corpus is build" do
+    it "creates a sorted set entry once a corpus is built" do
       expect($redis.zscore("Musicians", "Sleater-Kinney")).to eq(1.0)
       expect($redis.zscore("Authors", "Octavia Butler")).to eq(1.0)
+    end
+
+    it "increments logs after each subsequent build" do
+      # Force "expire" these entries so that corpora are rebuilt
+      $redis.del("Sleater-Kinney")
+      $redis.del("Octavia Butler")
+
+      VCR.use_cassette "controllers/build_frequency", :record => :new_episodes  do
+        get :custom_duet, {author: "Octavia Butler", musician: "Sleater-Kinney"}
+      end
+
+      expect($redis.zscore("Musicians", "Sleater-Kinney")).to eq(2.0)
+      expect($redis.zscore("Authors", "Octavia Butler")).to eq(2.0)
     end
 
   end
