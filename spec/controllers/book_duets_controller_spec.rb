@@ -91,8 +91,8 @@ RSpec.describe BookDuetsController, type: :controller do
     end
 
     it "creates a sorted set entry once a corpus is built" do
-      expect($redis.zscore("Musicians", "Sleater-Kinney")).to eq(1.0)
-      expect($redis.zscore("Authors", "Octavia Butler")).to eq(1.0)
+      expect($redis.zscore("Musicians Log", "Sleater-Kinney")).to eq(1.0)
+      expect($redis.zscore("Authors Log", "Octavia Butler")).to eq(1.0)
     end
 
     it "increments logs after each subsequent build" do
@@ -104,8 +104,8 @@ RSpec.describe BookDuetsController, type: :controller do
         get :custom_duet, {author: "Octavia Butler", musician: "Sleater-Kinney"}
       end
 
-      expect($redis.zscore("Musicians", "Sleater-Kinney")).to eq(2.0)
-      expect($redis.zscore("Authors", "Octavia Butler")).to eq(2.0)
+      expect($redis.zscore("Musicians Log", "Sleater-Kinney")).to eq(2.0)
+      expect($redis.zscore("Authors Log", "Octavia Butler")).to eq(2.0)
     end
 
   end

@@ -80,6 +80,6 @@ class LiteraryCorpus
   end
 
   def log_build (author)
-    $redis.zincrby("Authors", 1.0, author)
+    $redis.zincrby("Authors Log", 1.0, author)
   end
 end

@@ -64,6 +64,6 @@ class LyricalCorpus
   end
 
   def log_build (musician)
-    $redis.zincrby("Musicians", 1.0, musician)
+    $redis.zincrby("Musicians Log", 1.0, musician)
   end
 end
