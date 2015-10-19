@@ -82,6 +82,8 @@ class LiteraryCorpus
   end
 
   def cache_corpus (author)
+    # If popular, cache for a week. Otherwise, cache for 5 min.
+    
     if $redis.zscore("Authors Log", author) >= 5
       $redis.expire(author, 604800)
     else
