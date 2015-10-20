@@ -23,7 +23,7 @@ Or try your luck at creating a **custom Book Duet** by plugging in a musician an
 
 # <a name="get-api-key"></a> Get an API Key
 
-To use the Book Duets API, you'll need to register for an API key. (If you submit an endpoint request without an API key, then you'll get a 401 Unauthorized error.)
+To use the Book Duets API, you'll need to register for an API key. (If you submit an endpoint request without an API key, then you'll get a 401 Unauthorized error.)  
 
 To register for a key:
 <pre><code> POST BASEURL + /register?email="your@email.here" </code></pre>
@@ -36,16 +36,17 @@ Make sure to save this unique API key, since you will need it to retrieve Book D
 
 # <a name="rest-endpoints"></a> REST Endpoints
 
-Once you have a unique API key, you'll need to **send it in each request header** for authentication, formatted as:
+- Authentication - Once you have a unique API key, you'll need to **send it in each request header** for authentication, formatted as:
 <pre><code> "Book-Duets-Key" => ENV['YOUR_SECRET_API_KEY'] </pre></code>
 
-Once you've got your API key in the request header, then you can hit these endpoints:
+Once your API key is in the request header, then you can hit the following endpoints.    
 
-  - Base URL: Coming Soon
 
-  - GET a suggested pairing + a book duet: <pre><code> /suggested_pairing </code></pre>
+- Base URL: <pre><code>Coming Soon</code></pre>
 
-  - GET a custom book duet: <pre><code> /custom_duet?musician=MUSICIAN_NAME&author=AUTHOR_NAME </code></pre>
+- GET a suggested pairing + a book duet: <pre><code> /suggested_pairing </code></pre>
+
+- GET a custom book duet: <pre><code> /custom_duet?musician=MUSICIAN_NAME&author=AUTHOR_NAME </code></pre>
 
 # <a name="examples"></a> Examples
 
