@@ -7,13 +7,13 @@
 - [Capstone requirements](https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/capstone/capstone.md)
 
 Table of Contents
-=================
 * [What Are Book Duets?](#what-are-book-duets)
 * [Get an API Key](#get-api-key)
-
+* [REST Endpoints](#rest-endpoints)
+* [Examples](#examples)
+* [Formatting Artist Names](#formatting-names)
 
 # <a name="what-are-book-duets"></a> What Are Book Duets?
-====================
 
 Book Duets are computer-generated mashups of lyrics and literary excerpts. Learn more about the connections between well-known musicians and authors.
 
@@ -22,7 +22,6 @@ Did you know that Haruki Murakami is a fan of Radiohead? Or that Chuck Palahniuk
 Or try your luck at creating a **custom Book Duet** by plugging in a musician and author of your choice. You might end up with something weird, thrilling, deep, or just plain nonsensical.  
 
 # <a name="get-api-key"></a> Get an API Key
-==============
 
 To use the Book Duets API, you'll need to register for an API key.
 
@@ -34,7 +33,7 @@ You should receive a response that looks like this:
 
 Make sure to save this unique API key, since you will need it to retrieve Book Duets.
 
-## RESTful Endpoints
+# <a name="rest-endpoints"></a> REST Endpoints
 
   - Base URL: Coming Soon
 
@@ -42,7 +41,7 @@ Make sure to save this unique API key, since you will need it to retrieve Book D
 
   - GET a custom book duet: <pre><code> /custom_duet?musician=MUSICIAN_NAME&author=AUTHOR_NAME </code></pre>
 
-## Examples
+# <a name="examples"></a> Examples
 
 Here are some amazing examples of some past computer-generated mashups:
 
@@ -55,7 +54,8 @@ Here are some amazing examples of some past computer-generated mashups:
 
   <pre><code> {"author": "Stephenie Meyer", "musician": "Hanson", "book_duet":"I'll give you passionate, I muttered. I truly knew - knew it deep in my eyes as I thrilled to the word."} </code></pre>
 
-## Formatting Artist Names
+# <a name="formatting-names"></a> Formatting Artist Names
+
 
   The following formatting options are supported by the Book Duets endpoints
   - Spaces or Underscores (Crystal Castles, William_Gibson)
@@ -64,6 +64,6 @@ Here are some amazing examples of some past computer-generated mashups:
 
   If you are having difficulty retrieving specific artists by name, check to see how they are formatted on Wikiquotes or Musixmatch. Book Duets relies on these APIs to build corpora for Markov dictionaries.
 
-## History
+# <a name="history"></a> History
 
-## Disclaimers
+# <a name="Disclaimer"></a> Disclaimer
