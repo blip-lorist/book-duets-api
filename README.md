@@ -6,7 +6,7 @@
 - [Book Duets Mockup](https://github.com/lorainekv/book-duets-api/blob/master/bookduets_mockup.pdf)
 - [Capstone requirements](https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/capstone/capstone.md)
 
-Table of Contents
+# Table of Contents
 * [What Are Book Duets?](#what-are-book-duets)
 * [Get an API Key](#get-api-key)
 * [REST Endpoints](#rest-endpoints)
