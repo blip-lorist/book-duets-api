@@ -35,6 +35,11 @@ Make sure to save this unique API key, since you will need it to retrieve Book D
 
 # <a name="rest-endpoints"></a> REST Endpoints
 
+Once you have a unique API key, you'll need to **send it in each request header** for authentication, formatted as:
+<pre><code> "Book-Duets-Key" => ENV['YOUR_SECRET_API_KEY'] </pre></code>
+
+Once you've got your API key in the request header, then you can hit these endpoints:
+
   - Base URL: Coming Soon
 
   - GET a suggested pairing + a book duet: <pre><code> /suggested_pairing </code></pre>
