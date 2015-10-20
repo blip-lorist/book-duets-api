@@ -1,17 +1,20 @@
 # book-duets-api
 
-- [Book Duets Product Plan](https://github.com/lorainekv/book-duets-api/blob/master/product_plan.md)
-- [Book Duets Mockup](https://github.com/lorainekv/book-duets-api/blob/master/bookduets_mockup.pdf)
-- [Capstone requirements](https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/capstone/capstone.md)
-
-
-# book-duets-api
-
-- [Book Duets Product Plan](https://github.com/lorainekv/book-duets-api/blob/master/product_plan.md)
-- [Book Duets Mockup](https://github.com/lorainekv/book-duets-api/blob/master/bookduets_mockup.pdf)
-- [Capstone requirements](https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/capstone/capstone.md)
-
 **Currently, Book Duets is still under development as my capstone project for Ada Developers Academy. Please check back soon for active endpoint information!**
+
+- [Book Duets Product Plan](https://github.com/lorainekv/book-duets-api/blob/master/product_plan.md)
+- [Book Duets Mockup](https://github.com/lorainekv/book-duets-api/blob/master/bookduets_mockup.pdf)
+- [Capstone requirements](https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/capstone/capstone.md)
+====================
+
+## Table of Contents
+[What Are Book Duets?](##What Are Book Duets)
+[Get an API Key](##Get an API Key)
+[What Are Book Duets?](##What Are Book Duets)
+[What Are Book Duets?](##What Are Book Duets)
+[What Are Book Duets?](##What Are Book Duets)
+
+
 
 ## What Are Book Duets?
 
@@ -21,7 +24,7 @@ Did you know that Haruki Murakami is a fan of Radiohead? Or that Chuck Palahniuk
 
 Or try your luck at creating a **custom Book Duet** by plugging in a musician and author of your choice. You might end up with something weird, thrilling, deep, or just plain nonsensical.  
 
-## API Key
+## Get an API Key
 
 To use the Book Duets API, you'll need to register for an API key.
 
