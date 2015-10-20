@@ -5,18 +5,17 @@
 - [Book Duets Product Plan](https://github.com/lorainekv/book-duets-api/blob/master/product_plan.md)
 - [Book Duets Mockup](https://github.com/lorainekv/book-duets-api/blob/master/bookduets_mockup.pdf)
 - [Capstone requirements](https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/capstone/capstone.md)
+
+Table of Contents
+=================
+[What Are Book Duets?](#What Are Book Duets)
+[Get an API Key](#Get an API Key)
+[What Are Book Duets?](##What Are Book Duets)
+[What Are Book Duets?](##What Are Book Duets)
+[What Are Book Duets?](##What Are Book Duets)
+
+What Are Book Duets?
 ====================
-
-## Table of Contents
-[What Are Book Duets?](##What Are Book Duets)
-[Get an API Key](##Get an API Key)
-[What Are Book Duets?](##What Are Book Duets)
-[What Are Book Duets?](##What Are Book Duets)
-[What Are Book Duets?](##What Are Book Duets)
-
-
-
-## What Are Book Duets?
 
 Book Duets are computer-generated mashups of lyrics and literary excerpts. Learn more about the connections between well-known musicians and authors.
 
@@ -24,7 +23,8 @@ Did you know that Haruki Murakami is a fan of Radiohead? Or that Chuck Palahniuk
 
 Or try your luck at creating a **custom Book Duet** by plugging in a musician and author of your choice. You might end up with something weird, thrilling, deep, or just plain nonsensical.  
 
-## Get an API Key
+Get an API Key
+==============
 
 To use the Book Duets API, you'll need to register for an API key.
 
