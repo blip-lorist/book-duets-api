@@ -14,7 +14,7 @@ class LyricalCorpus
     get_lyrics
     clean_lyrics
     log_build
-    cache_corpus
+    # cache_corpus
   end
 
   private
@@ -67,14 +67,14 @@ class LyricalCorpus
     $redis.zincrby("Musicians Log", 1.0, @musician)
   end
 
-  def cache_corpus
-    # If popular, cache for a week. Otherwise, cache for 5 min.
-
-    if $redis.zscore("Musicians Log", @musician) >= 5
-      $redis.expire(@musician, 604800)
-    else
-      $redis.expire(@musician, 300)
-    end
-  end
+  # def cache_corpus
+  #   # If popular, cache for a week. Otherwise, cache for 5 min.
+  #
+  #   if $redis.zscore("Musicians Log", @musician) >= 5
+  #     $redis.expire(@musician, 604800)
+  #   else
+  #     $redis.expire(@musician, 300)
+  #   end
+  # end
 
 end

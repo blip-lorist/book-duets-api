@@ -5,8 +5,8 @@ class BookDuetsController < ApplicationController
   require "./lib/literary_corpus"
 
   def custom_duet
-    musician = params["musician"].gsub("_", " ")
-    author = params["author"].gsub("_", " ")
+    musician = params["musician"].gsub("_", " ").titlecase
+    author = params["author"].gsub("_", " ").titlecase
 
     begin
       build_corpora(musician, author)

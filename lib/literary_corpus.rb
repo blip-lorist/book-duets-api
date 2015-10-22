@@ -20,7 +20,7 @@ class LiteraryCorpus
     get_lit
     clean_lit
     log_build
-    cache_corpus
+    # cache_corpus
   end
 
   private
@@ -84,13 +84,15 @@ class LiteraryCorpus
     $redis.zincrby("Authors Log", 1.0, @author)
   end
 
-  def cache_corpus
-    # If popular, cache for a week. Otherwise, cache for 5 min.
-
-    if $redis.zscore("Authors Log", @author) >= 5
-      $redis.expire(@author, 604800)
-    else
-      $redis.expire(@author, 300)
-    end
-  end
+  # This may be unnecessary since I want to just fill
+  # up my cache and then kick out the oldest corpora
+  # def cache_corpus
+  #   # If popular, cache for a week. Otherwise, cache for 5 min.
+  #
+  #   if $redis.zscore("Authors Log", @author) >= 5
+  #     $redis.expire(@author, 604800)
+  #   else
+  #     $redis.expire(@author, 300)
+  #   end
+  # end
 end
