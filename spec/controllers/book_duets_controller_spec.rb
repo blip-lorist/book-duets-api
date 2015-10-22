@@ -72,62 +72,65 @@ RSpec.describe BookDuetsController, type: :controller do
       expect(@cached_literary_corpus).to eq($redis["J. M. Barrie"])
     end
 
-    it "will not persist musician keys in redis" do
-      expect($redis.ttl("Feist")).to_not eq(-1)
-    end
+    # Don't think I need these specs and methods, since I'm going to
+    # just let the cache fill and auto-expire the oldest entries
 
-    it "will not persist author keys in redis" do
-      expect($redis.ttl("J. M. Barrie")).to_not eq(-1)
-    end
-
-    it "caches musician keys for at least 300 seconds (5 min)" do
-      expect($redis.ttl("Feist")).to be <=(300)
-    end
-
-    it "caches author keys for at least 300 seconds (5 min)" do
-      expect($redis.ttl("J. M. Barrie")).to be <=(300)
-    end
+    # it "will not persist musician keys in redis" do
+    #   expect($redis.ttl("Feist")).to_not eq(-1)
+    # end
+    #
+    # it "will not persist author keys in redis" do
+    #   expect($redis.ttl("J. M. Barrie")).to_not eq(-1)
+    # end
+    #
+    # it "caches musician keys for at least 300 seconds (5 min)" do
+    #   expect($redis.ttl("Feist")).to be <=(300)
+    # end
+    #
+    # it "caches author keys for at least 300 seconds (5 min)" do
+    #   expect($redis.ttl("J. M. Barrie")).to be <=(300)
+    # end
   end
 
   describe "logging corpora build frequency" do
 
     before(:each) do
       VCR.use_cassette "controllers/build_frequency", :record => :new_episodes  do
-        get :custom_duet, {author: "Octavia Butler", musician: "Sleater-Kinney"}
+        get :custom_duet, {author: "Octavia Butler", musician: "Sleater Kinney"}
       end
     end
 
     it "creates a sorted set entry once a corpus is built" do
-      expect($redis.zscore("Musicians Log", "Sleater-Kinney")).to eq(1.0)
+      expect($redis.zscore("Musicians Log", "Sleater Kinney")).to eq(1.0)
       expect($redis.zscore("Authors Log", "Octavia Butler")).to eq(1.0)
     end
 
     it "increments logs after each subsequent build" do
       # Force "expire" these entries so that corpora are rebuilt
-      $redis.del("Sleater-Kinney")
+      $redis.del("Sleater Kinney")
       $redis.del("Octavia Butler")
 
       VCR.use_cassette "controllers/build_frequency", :record => :new_episodes  do
-        get :custom_duet, {author: "Octavia Butler", musician: "Sleater-Kinney"}
+        get :custom_duet, {author: "Octavia Butler", musician: "Sleater Kinney"}
       end
 
-      expect($redis.zscore("Musicians Log", "Sleater-Kinney")).to eq(2.0)
+      expect($redis.zscore("Musicians Log", "Sleater Kinney")).to eq(2.0)
       expect($redis.zscore("Authors Log", "Octavia Butler")).to eq(2.0)
     end
 
-    it "caches popular artists for one week" do
-      4.times do
-        # Force "expire" these entries so that corpora are rebuilt
-        $redis.del("Sleater-Kinney")
-        $redis.del("Octavia Butler")
-
-        VCR.use_cassette "controllers/build_frequency", :record => :new_episodes  do
-          get :custom_duet, {author: "Octavia Butler", musician: "Sleater-Kinney"}
-        end
-      end
-
-      expect($redis.ttl("Sleater-Kinney")).to be_between(300, 604800).inclusive
-      expect($redis.ttl("Octavia Butler")).to be_between(300, 604800).inclusive
-    end
+    # it "caches popular artists for one week" do
+    #   4.times do
+    #     # Force "expire" these entries so that corpora are rebuilt
+    #     $redis.del("Sleater-Kinney")
+    #     $redis.del("Octavia Butler")
+    #
+    #     VCR.use_cassette "controllers/build_frequency", :record => :new_episodes  do
+    #       get :custom_duet, {author: "Octavia Butler", musician: "Sleater-Kinney"}
+    #     end
+    #   end
+    #
+    #   expect($redis.ttl("Sleater-Kinney")).to be_between(300, 604800).inclusive
+    #   expect($redis.ttl("Octavia Butler")).to be_between(300, 604800).inclusive
+    # end
   end
 end
