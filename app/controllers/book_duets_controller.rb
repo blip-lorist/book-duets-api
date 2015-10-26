@@ -57,12 +57,8 @@ class BookDuetsController < ApplicationController
 
     temp_dict.clear!
 
-    if filter_level == "none"
-      return mashup
-    else
-      filter(mashup, filter_level)
-      return mashup
-    end
+    filter(mashup, filter_level)
+    return mashup
   end
 
   def filter(mashup, filter_level)
@@ -70,6 +66,8 @@ class BookDuetsController < ApplicationController
       mashup = $edgy_filter.sanitize(mashup)
     elsif filter_level == "hi"
       mashup = $safe_filter.sanitize(mashup)
+    elsif filter_level == "none"
+      mashup
     else
       raise "Please include a filter_level: none, med, or hi"
     end
