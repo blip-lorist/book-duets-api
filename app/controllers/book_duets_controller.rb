@@ -43,6 +43,7 @@ class BookDuetsController < ApplicationController
     mashup = temp_dict.generate_3_sentences
     temp_dict.clear!
 
+    mashup = $safe_filter.sanitize(mashup)
     return mashup
   end
 end
