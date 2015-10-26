@@ -55,11 +55,13 @@ class LyricalCorpus
 
   def clean_lyrics
     lyrics = $redis[@musician]
-
     # Cleaning the lyrics
     lyrics.gsub!("******* This Lyrics is NOT for Commercial use *******", "")
     lyrics.gsub!("...", "")
-
+    # Remove multiple instances of new lines
+    lyrics.squeeze!("\n")
+    # Adding some punctuation for Markoving
+    lyrics = lyrics.gsub(/(?<=[a-z])\s*\n/, ", ")
     $redis[@musician] = lyrics
   end
 
