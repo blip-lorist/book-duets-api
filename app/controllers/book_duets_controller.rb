@@ -54,17 +54,19 @@ class BookDuetsController < ApplicationController
     temp_dict.parse_string("#{$redis[author]}")
 
     mashup = temp_dict.generate_3_sentences
-    filter(mashup, filter_level)
 
     temp_dict.clear!
 
-    return mashup
+    if filter_level == "none"
+      return mashup
+    else
+      filter(mashup, filter_level)
+      return mashup
+    end
   end
 
   def filter(mashup, filter_level)
-    if filter_level == "none"
-      mashup = $edgy_filter.sanitize(mashup)
-    elsif filter_level == "med"
+    if filter_level == "med"
       mashup = $edgy_filter.sanitize(mashup)
     elsif filter_level == "hi"
       mashup = $safe_filter.sanitize(mashup)
