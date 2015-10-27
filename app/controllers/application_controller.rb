@@ -16,4 +16,16 @@ class ApplicationController < ActionController::Base
       return false
     end
   end
+
+  def filter(mashup, filter_level)
+    if filter_level == "med"
+      mashup = $edgy_filter.sanitize(mashup)
+    elsif filter_level == "hi"
+      mashup = $safe_filter.sanitize(mashup)
+    elsif filter_level == "none"
+      mashup
+    else
+      raise "Please include a filter_level: none, med, or hi"
+    end
+  end
 end
