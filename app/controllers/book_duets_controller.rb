@@ -15,7 +15,7 @@ class BookDuetsController < ApplicationController
 
       build_corpora(musician, author)
       book_duet = new_duet(musician, author, filter_level)
-      render json: {musician: musician, author: author, book_duet: book_duet}, status: :ok
+      render json: {musician: musician, author: author, book_duet: book_duet, filter_level: filter_level}, status: :ok
     rescue RuntimeError => specific_error
       render json: {
         error: specific_error.message
@@ -59,17 +59,5 @@ class BookDuetsController < ApplicationController
 
     filter(mashup, filter_level)
     return mashup
-  end
-
-  def filter(mashup, filter_level)
-    if filter_level == "med"
-      mashup = $edgy_filter.sanitize(mashup)
-    elsif filter_level == "hi"
-      mashup = $safe_filter.sanitize(mashup)
-    elsif filter_level == "none"
-      mashup
-    else
-      raise "Please include a filter_level: none, med, or hi"
-    end
   end
 end

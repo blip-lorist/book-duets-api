@@ -23,7 +23,7 @@ RSpec.describe SuggestedPairingsController, type: :controller do
 
     context "the JSON object" do
       before (:each) do
-        get :random_pairing
+        get :random_pairing, filter_level: "none"
         @response = JSON.parse(response.body)
       end
 
