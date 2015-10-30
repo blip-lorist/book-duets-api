@@ -6,7 +6,7 @@ Feed the Book Duets API author and musician names. Receive a Markov chain mashup
 * [REST Endpoints](#rest-endpoints)
 * [Examples](#examples)
 * [Formatting Artist Names](#formatting-names)
-* [History](#history)
+* [History and Thanks](#history)
 * [License](#license)
 
 # <a name="what-are-book-duets"></a> What Are Book Duets?
@@ -86,8 +86,8 @@ This was a part of my capstone project for [Ada Developers Academy](http://adade
 - [Book Duets Mockup](https://github.com/lorainekv/book-duets-api/blob/master/bookduets_mockup.pdf)
 - [Ada Developers Academy Capstone requirements](https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/capstone/capstone.md)
 
-Mahalo to @jnf, @kariabancroft, and my cohort[2] unigoats for your invaluable instruction and support.
+Mahalo to [@jnf](https://github.com/jnf), [@kariabancroft](https://github.com/kariabancroft), and my cohort[2] unigoats for your invaluable instruction and support.
 
-# <a name="License"></a> License
+# <a name="license"></a> License
 
 MIT License
