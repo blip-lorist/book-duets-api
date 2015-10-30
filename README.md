@@ -1,4 +1,4 @@
-Feed the Book Duets API the names of an author and a musician. Receive a Markov chain mashup of their written and spoken words.
+Feed the Book Duets API author and musician names. Receive a Markov chain mashup of their written and spoken words.
 
 # Table of Contents
 * [What Are Book Duets?](#what-are-book-duets)
@@ -32,7 +32,7 @@ Make sure to save this unique API key, since you will need it to retrieve Book D
 
 # <a name="rest-endpoints"></a> REST Endpoints
 
-- Authentication - Once you have a unique API key, you'll need to **send it in each request header** for authentication, formatted as:
+- Authentication - Once you have a unique API key, you'll need to send it in each request header for authentication, formatted as:
 <pre><code> "Book-Duets-Key" => ENV['YOUR_SECRET_API_KEY'] </pre></code>
 
 Once your API key is in the request header, then you can hit the following endpoints.    
@@ -47,14 +47,14 @@ Once your API key is in the request header, then you can hit the following endpo
 # <a name="parameters"></a> Parameters
 
 - **filter_level**: This parameter is required for all lookups. Possible values include:
-  - **none**: No offensive language filtering
+  - **none**: No filtering - may contain offensive or explicit language
   - **med**: Many curse words permitted, some offensive content is replaced with text bleeps (#@%!)
   - **hi**: Both offensive language and curse words replaced by text bleeps (#@%!)
 
 
-- **musician**: Names as cataloged by Musixmatch
+- **musician**: Names (as they appear on Musixmatch)
 
-- **author**: Names as cataloged by WikiQuotes
+- **author**: Names (as they appear on WikiQuotes)
 
 # <a name="examples"></a> Examples
 
