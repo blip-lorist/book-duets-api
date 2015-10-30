@@ -22,7 +22,7 @@ Or try your luck at creating a **custom Book Duet** by plugging in a musician an
 To use the Book Duets API, you'll need to register for an API key. (If you try to get Book Duets without an API key, then you'll get a 401 Unauthorized error.)  
 
 To register for a key:
-<pre><code> POST BASE_URI + /register?email="your@email.here" </code></pre>
+<pre><code> POST "api.bookduets.com/register?email="your@email.here" </code></pre>
 
 You should receive a response that looks like this:
 
