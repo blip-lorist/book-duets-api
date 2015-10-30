@@ -60,11 +60,11 @@ Once your API key is in the request header, then you can hit the following endpo
 
 Here are some amazing examples of some past computer-generated mashups:
 
-  - /suggested_pairing?filter_level=FILTER_LEVEL
+  - /suggested_pairing?filter_level=hi
 
   > {"author": "Margaret Atwood", "musician": "Feist", "news_source":  "http://flavorwire.com/384073/you-favorite-authors-favorite-musicians/4, "book_duet":"Gatekeeper, Gatekeeper seasons wait for your nod I feel it all. Oooh, I'll be the case now. Instead we are opposite, we touch as though attacking, the gifts we bring even in good faith maybe warp in our hands to implements, to maneuvers in restaurants we argue over which of..."}
 
-  - /custom_duet?musician=Hanson&author=Stephenie_Meyer
+  - /custom_duet?musician=Hanson&author=Stephenie_Meyer&filter_level=hi
 
   > {"author": "Stephenie Meyer", "musician": "Hanson", "book_duet":"I'll give you passionate, I muttered. I truly knew - knew it deep in my eyes as I thrilled to the word."} </code></pre>
 
