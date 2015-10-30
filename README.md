@@ -80,11 +80,13 @@ Here are some amazing examples of some past computer-generated mashups:
 
 # <a name="history"></a>Project History
 
-This was a part of my capstone project for [Ada Developers Academy](http://adadevelopersacademy.org/). As a a music enthusiast and former freelance writer, I had quite a bit of fun blending my interests and putting this API together. I hope to expand on both the web app and the API in the future!
+This was a part of my capstone project for [Ada Developers Academy](http://adadevelopersacademy.org/). As a music enthusiast and former freelance writer, I had quite a bit of fun blending my interests and putting this API together. I hope to expand on both the web app and the API in the future!
 
 - [Book Duets Product Plan](https://github.com/lorainekv/book-duets-api/blob/master/product_plan.md)
 - [Book Duets Mockup](https://github.com/lorainekv/book-duets-api/blob/master/bookduets_mockup.pdf)
 - [Ada Developers Academy Capstone requirements](https://github.com/Ada-Developers-Academy/daily-curriculum/blob/master/topic_resources/capstone/capstone.md)
+
+Mahalo to @jnf, @kariabancroft, and my cohort[2] unigoats for your invaluable instruction and support.
 
 # <a name="License"></a> License
 
