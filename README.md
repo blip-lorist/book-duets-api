@@ -1,5 +1,7 @@
 Feed the Book Duets API author and musician names. Receive a Markov chain mashup of their written and spoken words.
 
+[![Code Climate](https://codeclimate.com/repos/56293d65e30ba01033001623/badges/cd952584ee5ac836bb74/gpa.svg)](https://codeclimate.com/repos/56293d65e30ba01033001623/feed)
+
 # Table of Contents
 * [What Are Book Duets?](#what-are-book-duets)
 * [Get an API Key](#get-api-key)
