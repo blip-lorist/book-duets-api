@@ -9,7 +9,7 @@ Feed the Book Duets API author and musician names. Receive a Markov chain mashup
 * [Examples](#examples)
 * [Formatting Artist Names](#formatting-names)
 * [History and Thanks](#history)
-* [License](#license)
+* [License and Contributions](#license)
 
 # <a name="what-are-book-duets"></a> What Are Book Duets?
 
@@ -93,3 +93,5 @@ Mahalo to [@jnf](https://github.com/jnf), [@kariabancroft](https://github.com/ka
 # <a name="license"></a> License
 
 MIT License
+
+Please feel free to submit suggestions or improvements via github to help make Book Duets even better!
