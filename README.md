@@ -3,6 +3,7 @@ Feed the Book Duets API author and musician names. Receive a Markov chain mashup
 [![Code Climate](https://codeclimate.com/repos/56293d65e30ba01033001623/badges/cd952584ee5ac836bb74/gpa.svg)](https://codeclimate.com/repos/56293d65e30ba01033001623/feed)
 
 # Table of Contents
+* [User-Facing App](#user-app)
 * [What Are Book Duets?](#what-are-book-duets)
 * [Get an API Key](#get-api-key)
 * [REST Endpoints](#rest-endpoints)
@@ -10,6 +11,10 @@ Feed the Book Duets API author and musician names. Receive a Markov chain mashup
 * [Formatting Artist Names](#formatting-names)
 * [History and Thanks](#history)
 * [License and Contributions](#license)
+
+# <a name="user-app"></a> User-Facing App
+
+See this API in action by visiting [www.bookduets.com](http://bookduets.com)!
 
 # <a name="what-are-book-duets"></a> What Are Book Duets?
 
